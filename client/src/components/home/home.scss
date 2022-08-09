@@ -22,6 +22,7 @@
   border-radius: 2rem;
   padding: 2vw;
   margin-bottom: 2vh;
+  width: 80%;
   thead {
     tr {
       th {
@@ -40,10 +41,9 @@
   tbody {
     tr {
       td {
-        vertical-align: top;
         font-weight: 400;
         .primary-button {
-          margin-bottom: 20px;
+          margin-bottom: 1rem;
         }
         img {
           width: auto;
@@ -54,7 +54,7 @@
           margin-right: 2rem;
         }
       }
-      line-height: 10rem;
     }
+    line-height: 5rem;
   }
 }

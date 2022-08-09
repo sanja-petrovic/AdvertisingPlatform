@@ -133,6 +133,7 @@ input {
   border-radius: 2rem;
   padding: 2vw;
   margin-bottom: 2vh;
+  width: 80%;
 }
 .advert-table thead tr th {
   padding-bottom: 2vw;
@@ -144,15 +145,14 @@ input {
 .advert-table thead tr .button-col {
   width: 10%;
 }
-.advert-table tbody tr {
-  line-height: 10rem;
+.advert-table tbody {
+  line-height: 5rem;
 }
 .advert-table tbody tr td {
-  vertical-align: top;
   font-weight: 400;
 }
 .advert-table tbody tr td .primary-button {
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 .advert-table tbody tr td img {
   width: auto;
