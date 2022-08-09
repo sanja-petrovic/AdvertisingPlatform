@@ -15,25 +15,26 @@
     margin-bottom: 1rem;
   }
 }
-
-.advert-table {
+.table {
+  border-collapse: separate;
   box-shadow: 0 3px 5rem rgba(99, 219, 255, 0.1);
-  border: 2px solid $border-color;
-  border-radius: 2rem;
+  border: 2px solid $border-color !important;
+  border-width: 2px !important;
+  border-radius: 2rem !important;
   padding: 2vw;
   margin-bottom: 2vh;
-  width: 80%;
+  width: 80vw !important;
   thead {
     tr {
       th {
-        padding-bottom: 2vw;
+        font-size: 16px;
         background-image: $background-color;
         text-align: left;
         color: $link-color;
-        width: 18%;
+        width: 17.6%;
       }
       .button-col {
-        width: 10%;
+        width: 12%;
       }
     }
   }
@@ -42,19 +43,27 @@
     tr {
       td {
         font-weight: 400;
+        padding: 1vw;
         .primary-button {
           margin-bottom: 1rem;
         }
         img {
           width: auto;
           height: auto;
-          max-width: 10rem;
+          max-width: 13rem;
           border: 0 solid;
           border-radius: 2rem;
           margin-right: 2rem;
         }
       }
     }
-    line-height: 5rem;
+  }
+}
+
+.dropdown-container {
+  width: 80vw;
+  margin: 1rem;
+  label {
+    margin-left: 0.5rem;
   }
 }
