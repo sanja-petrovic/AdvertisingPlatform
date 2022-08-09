@@ -163,4 +163,67 @@ input {
   margin-right: 2rem;
 }
 
+.secondary-button, .primary-button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 2rem;
+  transition: 0.5s;
+  background-size: 200% auto;
+  display: block;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(99, 219, 255, 0.6);
+}
+
+.primary-button:hover {
+  background-position: right center;
+  text-decoration: none;
+}
+
+.primary-button {
+  border: 0 solid;
+  background-image: linear-gradient(to right, #528dff 0%, #46ddff 51%, #528dff 100%);
+}
+.primary-button a {
+  color: white;
+}
+
+.secondary-button {
+  border: 1px solid #528dff;
+  background-color: white;
+}
+
+.secondary-button:hover {
+  border: 1px solid #46ddff;
+}
+.secondary-button:hover a {
+  color: #46ddff;
+}
+
+.nav-bar {
+  align-items: center;
+  border-bottom: 0 solid #dfeaff;
+  position: sticky;
+  background-color: white;
+  padding: 0rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+}
+.nav-bar div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+}
+.nav-bar ul {
+  list-style-type: none;
+  padding: 0;
+  overflow: hidden;
+}
+.nav-bar li {
+  float: left;
+  margin-left: 1rem;
+  font-weight: 400;
+  padding-bottom: 0.5rem;
+}
+
 /*# sourceMappingURL=home.css.map */

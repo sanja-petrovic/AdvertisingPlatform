@@ -16,6 +16,31 @@
   cursor: pointer;
 }
 
+.container-vertical {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.container-vertical {
+  flex-direction: column;
+}
+.container-vertical form {
+  display: flex;
+  flex-direction: column;
+}
+.container-vertical p {
+  font-size: 24px;
+  margin-bottom: 1rem;
+}
+
+.text-box {
+  padding: 0.5rem;
+  border: 1px solid #dfeaff;
+  border-radius: 2rem;
+}
+
 .title:hover {
   color: #46ddff;
 }
@@ -29,6 +54,10 @@ a {
   color: #528dff;
   text-decoration: none;
   transition: 0.5s;
+}
+
+a:hover {
+  color: #46ddff;
 }
 
 input {
@@ -70,6 +99,7 @@ input {
 .primary-button {
   border: 0 solid;
   background-image: linear-gradient(to right, #528dff 0%, #46ddff 51%, #528dff 100%);
+  color: white;
 }
 .primary-button a {
   color: white;
@@ -78,6 +108,7 @@ input {
 .secondary-button {
   border: 1px solid #528dff;
   background-color: white;
+  color: #528dff;
 }
 
 .secondary-button:hover {
