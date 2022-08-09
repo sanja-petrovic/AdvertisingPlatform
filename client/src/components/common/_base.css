@@ -22,7 +22,7 @@
 
 body {
   background-color: #ffffff;
-  color: #313252;
+  color: #515398;
 }
 
 a {
@@ -39,6 +39,10 @@ input {
 .subtitle {
   font-weight: 400;
   margin-left: 1vw;
+}
+
+.description {
+  font-weight: 400;
 }
 
 .title {

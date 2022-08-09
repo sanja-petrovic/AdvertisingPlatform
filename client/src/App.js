@@ -6,10 +6,6 @@ import Home from "./components/home/Home"
 import NavigationBar from "./components/common/NavigationBar"
 
 function App() {
-  const padding = {
-    padding: 5
-  };
-
   return (
       <Router>
         <NavigationBar username="username" />
