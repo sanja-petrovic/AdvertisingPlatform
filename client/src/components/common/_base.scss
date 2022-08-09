@@ -25,6 +25,33 @@ $button-color: linear-gradient(to right, $link-color 0%, $link-highlight-color 5
   cursor: pointer;
 }
 
+%container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+
+}
+
+.container-vertical {
+  @extend %container;
+  flex-direction: column;
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  p {
+    font-size: 24px;
+    margin-bottom: 1rem;
+  }
+}
+
+.text-box {
+  padding: 0.5rem;
+  border: 1px solid $border-color;
+  border-radius: 2rem;
+}
+
 .title:hover {
   color: $link-highlight-color;
 }
@@ -38,6 +65,10 @@ a {
   color: $link-color;
   text-decoration: none;
   transition: 0.5s;
+}
+
+a:hover {
+  color: $link-highlight-color;
 }
 
 input {
@@ -76,6 +107,7 @@ input {
   @extend %button;
   border: 0 solid;
   background-image: $button-color;
+  color: white;
   a {
     color: white;
   }
@@ -89,6 +121,7 @@ input {
   @extend %button;
   border: 1px solid $link-color;
   background-color: white;
+  color: $link-color;
 }
 
 .secondary-button:hover {

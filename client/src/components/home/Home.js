@@ -8,7 +8,6 @@ import {
     BrowserRouter as Router,
     Routes, Route, Link
 } from "react-router-dom"
-import SimpleSearchBar from './SimpleSearchBar'
 
 class Home extends React.Component {
     render() {
