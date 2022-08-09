@@ -11,8 +11,8 @@ class LoggedOutNav extends React.Component {
         return (
             <div>
                 <ul className="menu">
-                    <li><button className="primary-button"><Link to="/signup">Sign up</Link></button></li>
-                    <li><button className="secondary-button"><Link to="/login">Log in</Link></button></li>
+                    <li><Link to="/signup"><button className="primary-button">Sign up</button></Link></li>
+                    <li><Link to="/login"><button className="secondary-button">Log in</button></Link></li>
                 </ul>
             </div>
         );

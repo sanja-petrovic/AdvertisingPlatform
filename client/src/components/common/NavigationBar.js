@@ -24,7 +24,7 @@ class NavigationBar extends React.Component {
         }
         return (
             <div className="nav-bar">
-                <p className="title">Advr.</p>
+                <Link to="/"><p className="title">Advr.</p></Link>
                 {nav}
             </div>
         );
