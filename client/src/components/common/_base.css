@@ -115,6 +115,7 @@ input {
 
 .secondary-button:hover {
   border: 1px solid #46ddff;
+  color: #46ddff;
 }
 .secondary-button:hover a {
   color: #46ddff;

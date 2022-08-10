@@ -133,6 +133,7 @@ input {
 
 .secondary-button:hover {
   border: 1px solid $link-highlight-color;
+  color: $link-highlight-color;
   a {
     color: $link-highlight-color;
   }
