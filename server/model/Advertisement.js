@@ -1,14 +1,16 @@
-/*ID
-● Naziv oglasa
-● Opis oglasa
-● URL slike
-● Cena
-● Kategorija (clothing, tools, sports, accessories, furniture, pets, games, books,
-technology)
-● Korisnik (koji je postavio oglas)
-● Grad
-● Datum postavljanja oglasa*/
+import mongoose from "mongoose";
 
-class Advertisement {
+const advertisementSchema = new mongoose.Schema({
+    title: String,
+    description: String,
+    url: String,
+    price: Number,
+    category: String,
+    user: mongoose.Schema.Types.ObjectId,
+    city: String,
+    date: Date
+})
 
-}
+const Advertisement = mongoose.model('Advertisement', advertisementSchema)
+
+export default Advertisement;

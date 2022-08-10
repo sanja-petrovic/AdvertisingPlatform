@@ -2,6 +2,8 @@ import 'dotenv/config';
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import User from "./model/User.js"
+import Advertisement from "./model/Advertisement.js";
 
 const app = express();
 
