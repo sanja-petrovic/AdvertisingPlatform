@@ -1,19 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "~bootstrap/dist/css/bootstrap.min.css";
 $logo-font: 'Playfair Display', serif;
 $body-font: 'Montserrat', sans-serif;
-$body-font-color: #313252;
+$body-font-color: #515398;
 $background-color: #ffffff;
 $link-color: #528dff;
 $border-color: #dfeaff;
 $link-highlight-color: #46ddff;
 $button-color: linear-gradient(to right, $link-color 0%, $link-highlight-color 51%, $link-color  100%);
+$shadow:  0 3px 10px rgba(99, 219, 255, 0.6);
 
 * {
   font-family: $body-font;
   font-weight: 600;
   margin: 0;
+  font-size: 14px;
 }
 
 .title {
@@ -81,6 +84,10 @@ input {
   margin-left: 1vw;
 }
 
+.description {
+  font-weight: 400;
+}
+
 .title {
   font-family: $logo-font;
   font-weight: 900;
@@ -126,6 +133,7 @@ input {
 
 .secondary-button:hover {
   border: 1px solid $link-highlight-color;
+  color: $link-highlight-color;
   a {
     color: $link-highlight-color;
   }

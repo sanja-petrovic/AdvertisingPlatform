@@ -1,1 +1,69 @@
 @import '../common/base';
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  .subtitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  .description {
+    margin-bottom: 1rem;
+  }
+}
+.table {
+  border-collapse: separate;
+  box-shadow: 0 3px 5rem rgba(99, 219, 255, 0.1);
+  border: 2px solid $border-color !important;
+  border-width: 2px !important;
+  border-radius: 2rem !important;
+  padding: 2vw;
+  margin-bottom: 2vh;
+  width: 80vw !important;
+  thead {
+    tr {
+      th {
+        font-size: 16px;
+        background-image: $background-color;
+        text-align: left;
+        color: $link-color;
+        width: 14.7%;
+      }
+      .button-col {
+        width: 12%;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        font-weight: 400;
+        padding: 1vw;
+        .primary-button {
+          margin-bottom: 1rem;
+        }
+        img {
+          width: auto;
+          height: auto;
+          max-width: 13rem;
+          border: 0 solid;
+          border-radius: 2rem;
+          margin-right: 2rem;
+        }
+      }
+    }
+  }
+}
+
+.dropdown-container {
+  width: 80vw;
+  margin: 1rem;
+  label {
+    margin-left: 0.5rem;
+  }
+}
