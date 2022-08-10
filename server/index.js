@@ -1,16 +1,20 @@
 import 'dotenv/config';
 import express from "express";
+import cookieParser from "cookie-parser"
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import User from "./model/User.js"
 import Advertisement from "./model/Advertisement.js";
-import bcrypt from "bcrypt"
-import cors from "cors"
+import bcrypt from "bcrypt";
+import JwtService from './JwtService.js';
+import passport from "passport";
+import LocalStrategy from "passport-local";
+import cors from "cors";
 const app = express();
-
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+app.use(cookieParser());
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}!`);
     mongoose.connect(process.env.MONGODB_URI)
@@ -62,7 +66,9 @@ app.post('/api/users', async (request, response) => {
         });
         user.password = await bcrypt.hash(user.password, salt);
         user.save().then(newUser => {
-            response.json(newUser)
+            const token = JwtService.generateAccessToken(user.username)
+            response.cookie('token', token);
+            response.json(token);
         })
     } catch (err) {
         console.log(err);
@@ -93,18 +99,21 @@ app.post('/api/advertisements',  (request, response) => {
 });
 
 app.post('/api/login', async (request, response) => {
+    console.log(request);
     const user = await User.findOne({ username: request.body.username });
     if (user) {
         const passwordValid = await bcrypt.compare(request.body.password, user.password);
         if(passwordValid) {
-            response.status(200).json({ message: 'Successfully logged in'});
-        }
-        if(passwordValid) {
-            response.status(200).json({ message: 'Successfully logged in'});
+            const token = JwtService.generateAccessToken(user.username);
+            console.log(token);
+            response.cookie('token', token);
+            response.json(token);
         } else {
-            response.status(403).json({ error: "Incorrect credentials" });
+            response.statusMessage = "Incorrect username and/or password";
+            response.status(403).end();
         }
     } else {
-        response.status(403).json({ error: "Incorrect credentials" });
+        response.statusMessage = "Incorrect username and/or password";
+        response.status(403).end();
     }
-})
+});

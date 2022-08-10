@@ -11,14 +11,18 @@ import LoggedOutNav from "./LoggedOutNav";
 class NavigationBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isLoggedIn: false};
+        this.state = {isLoggedIn: sessionStorage.getItem("token") !== null};
     }
 
     render() {
-        const isLoggedIn = this.state.isLoggedIn;
         let nav;
-        if(isLoggedIn) {
-            nav = <LoggedInNav/>;
+        if(this.state.isLoggedIn) {
+            const token = sessionStorage.getItem("token");
+            const tokenParts = token.split('.');
+            const encodedPayload = tokenParts[1];
+            const rawPayload = atob(encodedPayload);
+            const user = JSON.parse(rawPayload);
+            nav = <LoggedInNav username={ user.username }/>;
         } else {
             nav = <LoggedOutNav/>;
         }
