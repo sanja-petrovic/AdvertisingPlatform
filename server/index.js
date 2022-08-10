@@ -4,9 +4,8 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import User from "./model/User.js"
 import Advertisement from "./model/Advertisement.js";
-import advertisement from "./model/Advertisement.js";
+import bcrypt from "bcrypt"
 import cors from "cors"
-import user from "./model/User.js";
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -53,6 +52,7 @@ app.post('/api/users', async (request, response) => {
         if (user) {
             return response.status(409).send("User already registered.");
         }
+        const salt = await bcrypt.genSalt(10);
 
         user = new User({
             username: request.body.username,
@@ -60,7 +60,7 @@ app.post('/api/users', async (request, response) => {
             registrationDate: new Date(),
             phone: request.body.phone
         });
-
+        user.password = await bcrypt.hash(user.password, salt);
         user.save().then(newUser => {
             response.json(newUser)
         })
@@ -91,3 +91,20 @@ app.post('/api/advertisements',  (request, response) => {
         response.status(500).send("Error occurred...");
     }
 });
+
+app.post('/api/login', async (request, response) => {
+    const user = await User.findOne({ username: request.body.username });
+    if (user) {
+        const passwordValid = await bcrypt.compare(request.body.password, user.password);
+        if(passwordValid) {
+            response.status(200).json({ message: 'Successfully logged in'});
+        }
+        if(passwordValid) {
+            response.status(200).json({ message: 'Successfully logged in'});
+        } else {
+            response.status(403).json({ error: "Incorrect credentials" });
+        }
+    } else {
+        response.status(403).json({ error: "Incorrect credentials" });
+    }
+})
