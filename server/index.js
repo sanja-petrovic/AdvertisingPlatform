@@ -54,7 +54,9 @@ app.post('/api/users', async (request, response) => {
     try {
         let user = await User.findOne({ username: request.body.username });
         if (user) {
-            return response.status(409).send("User already registered.");
+            response.statusMessage = "User already registered.";
+            response.status(409);
+            return response.send("User already registered.");
         }
         const salt = await bcrypt.genSalt(10);
 
@@ -68,6 +70,7 @@ app.post('/api/users', async (request, response) => {
         user.save().then(newUser => {
             const token = JwtService.generateAccessToken(user.username)
             response.cookie('token', token);
+
             response.json(token);
         })
     } catch (err) {
