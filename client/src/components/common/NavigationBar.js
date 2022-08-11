@@ -7,7 +7,7 @@ import {
 } from "react-router-dom"
 import LoggedInNav from "./LoggedInNav";
 import LoggedOutNav from "./LoggedOutNav";
-import {getUsernameFromToken} from "../../getUsernameFromToken";
+import {getUsernameFromToken} from "../../util/getUsernameFromToken";
 
 class NavigationBar extends React.Component {
     constructor(props) {

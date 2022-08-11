@@ -5,7 +5,7 @@ import {
     BrowserRouter as Router,
     Routes, Route, Link
 } from "react-router-dom"
-import {setAuthToken} from "../../setAuthToken";
+import {setAuthToken} from "../../util/setAuthToken";
 
 class LoggedInNav extends React.Component {
     constructor(props) {

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import '../common/_base.css'
 import './credentials.css'
 import UserService from "../../services/UserService";
-import {setAuthToken} from "../../setAuthToken";
+import {setAuthToken} from "../../util/setAuthToken";
 import {
     BrowserRouter as Router,
     Routes, Route, Link, Navigate
