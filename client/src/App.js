@@ -4,6 +4,7 @@ import Login from "./components/login/Login";
 import SignUp from "./components/login/SignUp";
 import store from './store'
 import {Provider} from 'react-redux'
+import SingleAdvertisement from "./components/advertisement/SingleAdvertisement";
 
 function App() {
     return (
@@ -13,7 +14,7 @@ function App() {
                     <Route path="/" element={<Home/>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
-                    <Route path="/advertisements/:id" element={<SignUp/>}/>
+                    <Route path="/advertisements/:id" element={<SingleAdvertisement/>}/>
                 </Routes>
             </Router>
         </Provider>
