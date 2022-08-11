@@ -2,8 +2,8 @@ import React, { useState }  from 'react'
 import '../common/_base.css'
 import './credentials.css'
 import {Link, Navigate} from "react-router-dom";
-import UserService from "./UserService";
-import {setAuthToken} from "../../setAuthToken";
+import UserService from "../../services/UserService";
+import {setAuthToken} from "../../util/setAuthToken";
 
 class SignUp extends React.Component {
     constructor(props) {

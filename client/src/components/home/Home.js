@@ -4,7 +4,7 @@ import '../common/_base.css'
 import dress from "../../resources/dress.jpg"
 import corgi from "../../resources/corgi.jpg"
 import Filter from "./Filter";
-import AdvertTable from "./AdvertTable";
+import AdvertisementTable from "./AdvertisementTable";
 import NavigationBar from "../common/NavigationBar";
 
 class Home extends React.Component {
@@ -16,7 +16,7 @@ class Home extends React.Component {
                     <p className="subtitle">Advertisements</p>
                     <p className="description">Check out all available advertisements below.</p>
                     <Filter/>
-                    <AdvertTable/>
+                    <AdvertisementTable/>
                 </div>
             </div>
         );

@@ -4,7 +4,7 @@ import '../common/_base.css'
 import dress from "../../resources/dress.jpg";
 import corgi from "../../resources/corgi.jpg";
 
-class AdvertTable extends React.Component {
+class AdvertisementTable extends React.Component {
     constructor() {
         super();
 
@@ -52,4 +52,4 @@ class AdvertTable extends React.Component {
     }
 }
 
-export default AdvertTable;
+export default AdvertisementTable;
