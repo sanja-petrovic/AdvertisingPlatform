@@ -8,12 +8,14 @@
   border-radius: 2rem;
   height: auto;
   max-width: 70vw;
-
+  box-shadow: 0 3px 5rem rgba(99, 219, 255, 0.1);
+  overflow: hidden;
 }
 .image-container {
   img {
     border: 0 solid $border-color;
-    border-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    border-top-left-radius: 2rem;
     max-width: 50vw;
     max-height: 50vh;
   }

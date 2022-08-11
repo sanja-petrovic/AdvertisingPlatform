@@ -8,7 +8,8 @@ const advertisementSchema = new mongoose.Schema({
     category: String,
     user: mongoose.Schema.ObjectId,
     city: String,
-    date: Date
+    date: Date,
+    deleted: Date
 })
 
 const Advertisement = mongoose.model('Advertisement', advertisementSchema)

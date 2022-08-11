@@ -6,6 +6,39 @@ import {formatDate} from "../../util/formatDate";
 import {getUsernameFromToken} from "../../util/getUsernameFromToken";
 import {getIdFromToken} from "../../util/getUsernameFromToken";
 import {Link} from "react-router-dom";
+import * as PropTypes from "prop-types";
+
+function Row(props) {
+    function handleDelete(id, e) {
+        e.preventDefault();
+        console.log('Deleting...');
+        AdvertisementService.deleteById(id);
+        window.location.href = "/";
+    }
+    return <tr>
+        <td></td>
+        <td>{props.row.title}</td>
+        <td>{props.row.price}</td>
+        <td>{props.row.city}</td>
+        <td>{props.row.category}</td>
+        <td>{props.formattedDate} </td>
+        <td><Link to={`/advertisements/${props.row._id}`}>
+            <button className="button primary-button"> Check out</button>
+        </Link>
+            {props.byUser && <div>
+                <button className="button primary-button" onClick={(e) => {handleDelete(props.row._id, e)}}>Delete</button>
+                <button className="button primary-button">Edit</button>
+            </div>}
+        </td>
+    </tr>;
+}
+
+Row.propTypes = {
+    row: PropTypes.any,
+    formattedDate: PropTypes.any,
+    byUser: PropTypes.any,
+    onClick: PropTypes.func
+};
 
 class AdvertisementTable extends React.Component {
     constructor(props) {
@@ -21,23 +54,20 @@ class AdvertisementTable extends React.Component {
         })
     }
 
+    async handleDelete(id, e) {
+        e.preventDefault();
+        console.log('Deleting...');
+        window.location.href = "/";
+    }
+
     renderTable() {
         if(this.state.advertisements !== null) {
             return this.state.advertisements.map(function(row) {
                     const formattedDate = formatDate(row.date);
                     const token = sessionStorage.getItem("token");
                     const byUser = token !== null ? ( row.user === getIdFromToken(token) ) : false;
-                    return <tr key={ row._id }>
-                        <td></td>
-                        <td>{ row.title }</td>
-                        <td>{ row.price }</td>
-                        <td>{ row.city }</td>
-                        <td>{ row.category }</td>
-                        <td>{ formattedDate } </td>
-                        <td><Link to={`/advertisements/${row._id}`}><button className="button primary-button"> Check out</button></Link>
-                            { byUser && <div><button className="button primary-button">Delete</button><button className="button primary-button">Edit</button></div> }
-                        </td>
-                    </tr>
+                    return <Row key={row._id} row={row} formattedDate={formattedDate} byUser={byUser}
+                                />
                 }
             );
         }

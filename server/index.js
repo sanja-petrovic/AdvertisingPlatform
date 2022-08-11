@@ -46,7 +46,7 @@ app.get('/api/usernames/:username', (request, response) => {
 
 app.get('/api/advertisements', (request, response) => {
     Advertisement.find().then(advertisements => {
-        response.json(advertisements);
+        response.json(advertisements.filter(advertisement => advertisement.deleted === undefined));
     })
 })
 
@@ -126,3 +126,7 @@ app.post('/api/login', async (request, response) => {
         response.status(403).end();
     }
 });
+
+app.delete('/api/advertisements/:id', async(request, response) => {
+    await Advertisement.findByIdAndUpdate(request.params.id, { deleted: new Date() });
+})
