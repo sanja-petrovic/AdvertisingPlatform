@@ -6,7 +6,7 @@ const advertisementSchema = new mongoose.Schema({
     url: String,
     price: Number,
     category: String,
-    user: mongoose.Schema.Types.ObjectId,
+    user: String,
     city: String,
     date: Date
 })

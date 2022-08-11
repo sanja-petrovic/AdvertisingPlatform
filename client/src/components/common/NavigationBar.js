@@ -7,6 +7,7 @@ import {
 } from "react-router-dom"
 import LoggedInNav from "./LoggedInNav";
 import LoggedOutNav from "./LoggedOutNav";
+import {getUsernameFromToken} from "../../util/getUsernameFromToken";
 
 class NavigationBar extends React.Component {
     constructor(props) {
@@ -17,12 +18,8 @@ class NavigationBar extends React.Component {
     render() {
         let nav;
         if(this.state.isLoggedIn) {
-            const token = sessionStorage.getItem("token");
-            const tokenParts = token.split('.');
-            const encodedPayload = tokenParts[1];
-            const rawPayload = atob(encodedPayload);
-            const user = JSON.parse(rawPayload);
-            nav = <LoggedInNav username={ user.username }/>;
+            const username = getUsernameFromToken();
+            nav = <LoggedInNav username={ username }/>;
         } else {
             nav = <LoggedOutNav/>;
         }
