@@ -38,6 +38,12 @@ app.get('/api/users/:id', (request, response) => {
     })
 })
 
+app.get('/api/usernames/:username', (request, response) => {
+    User.findOne({ username: request.params.username }).then(user => {
+        response.json(user);
+    })
+})
+
 app.get('/api/advertisements', (request, response) => {
     Advertisement.find().then(advertisements => {
         response.json(advertisements);
@@ -68,7 +74,7 @@ app.post('/api/users', async (request, response) => {
         });
         user.password = await bcrypt.hash(user.password, salt);
         user.save().then(newUser => {
-            const token = JwtService.generateAccessToken(user.username)
+            const token = JwtService.generateAccessToken(user._id, user.username)
             response.cookie('token', token);
 
             response.json(token);
@@ -107,7 +113,7 @@ app.post('/api/login', async (request, response) => {
     if (user) {
         const passwordValid = await bcrypt.compare(request.body.password, user.password);
         if(passwordValid) {
-            const token = JwtService.generateAccessToken(user.username);
+            const token = JwtService.generateAccessToken(user._id, user.username);
             console.log(token);
             response.cookie('token', token);
             response.json(token);

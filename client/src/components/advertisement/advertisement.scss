@@ -1,0 +1,43 @@
+@import "../common/base";
+
+.ad-container {
+  @extend %container;
+  flex-direction: row;
+  background-color: white;
+  border: 2px solid $border-color;
+  border-radius: 2rem;
+  height: auto;
+  max-width: 70vw;
+
+}
+.image-container {
+  img {
+    border: 0 solid $border-color;
+    border-radius: 2rem;
+    max-width: 50vw;
+    max-height: 50vh;
+  }
+}
+
+.ad-info {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  .description {
+    font-size: 16px;
+  }
+  .hashtag {
+    font-size: 14px;
+    color: $link-color;
+  }
+  .small-text {
+    font-size: 12px;
+  }
+  .medium-text {
+    font-size: 20px;
+  }
+  .buttons {
+    display: flex;
+  }
+}
