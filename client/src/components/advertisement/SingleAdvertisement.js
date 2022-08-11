@@ -9,14 +9,16 @@ import AdvertisementService from "../../services/AdvertisementService";
 import {formatDate} from "../../util/formatDate";
 import UserService from "../../services/UserService";
 import LoadingSpinner from "../common/LoadingSpinner";
+import {getIdFromToken} from "../../util/getUsernameFromToken";
+import {Navigate} from "react-router-dom";
 
 function SingleAdvertisement() {
     let {id} = useParams();
     const [ad, setAd] = useState(null);
-    const [poster, setPoster] = useState(null);
     const [user, setUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [byUser, setByUser] = useState(false);
     let formattedDate;
+
     useEffect(() => {
         const fetchData = async () => {
             const result = await AdvertisementService.getById(id);
@@ -26,7 +28,8 @@ function SingleAdvertisement() {
                 const user = await UserService.getById(result.user);
                 if (user !== null) {
                     setUser(user);
-                    setIsLoading(false);
+                    const token = sessionStorage.getItem("token");
+                    setByUser(token !== null && getIdFromToken(token) === user._id);
                 }
             }
         };
@@ -45,6 +48,13 @@ function SingleAdvertisement() {
         fetchData();
     }, []);
 
+    async function handleDelete(e) {
+        e.preventDefault();
+        console.log('Deleting...');
+        AdvertisementService.deleteById(ad._id);
+        window.location.href = "/";
+    }
+
     return (
         <div className="">
             <NavigationBar/>
@@ -61,6 +71,7 @@ function SingleAdvertisement() {
                             <p className="description"> {ad.description} </p>
                             <p className="medium-text">Contact</p>
                             <p className="description"> {user.username}, {user.phone} </p>
+                            { byUser && <div><button className="button primary-button" onClick={handleDelete}>Delete</button><button className="button primary-button">Edit</button></div> }
                         </div>
 
                     </div>

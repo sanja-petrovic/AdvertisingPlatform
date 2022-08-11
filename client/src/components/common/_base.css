@@ -125,6 +125,7 @@ input {
   align-items: center;
   border-bottom: 0 solid #dfeaff;
   position: sticky;
+  top: 0;
   background-color: white;
   padding: 0rem 2rem;
   display: flex;

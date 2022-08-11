@@ -15,7 +15,12 @@ async function getById(id) {
     return advertisement;
 }
 
+async function deleteById(id) {
+    await axios.delete(`${baseUrl}/advertisements/${id}`);
+}
+
 export default {
     getAll,
-    getById
+    getById,
+    deleteById
 }
