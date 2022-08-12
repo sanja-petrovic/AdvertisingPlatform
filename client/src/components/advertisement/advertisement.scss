@@ -57,4 +57,20 @@
     font-weight: 400;
     outline-style: none;
   }
+  div {
+    width: 100%;
+  }
+  .currency-box {
+    width: 2.5rem;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    text-align: center;
+  }
+
+  .money-box {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: calc(100% - 2.5rem);
+  }
 }

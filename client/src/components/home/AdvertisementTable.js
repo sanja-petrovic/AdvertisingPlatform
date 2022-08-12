@@ -5,7 +5,7 @@ import AdvertisementService from "../../services/AdvertisementService";
 import {formatDate} from "../../util/formatDate";
 import {getUsernameFromToken} from "../../util/getUsernameFromToken";
 import {getIdFromToken} from "../../util/getUsernameFromToken";
-import {Link} from "react-router-dom";
+import {Link, Navigate } from "react-router-dom";
 import * as PropTypes from "prop-types";
 
 function Row(props) {
@@ -15,10 +15,13 @@ function Row(props) {
         AdvertisementService.deleteById(id);
         window.location.href = "/";
     }
+    function handleEdit(e) {
+        e.preventDefault();
+    }
     return <tr>
         <td></td>
         <td><b>{props.row.title}</b></td>
-        <td>{props.row.price}</td>
+        <td>€{props.row.price}</td>
         <td>{props.row.city}</td>
         <td>{props.row.category}</td>
         <td>{props.formattedDate} </td>

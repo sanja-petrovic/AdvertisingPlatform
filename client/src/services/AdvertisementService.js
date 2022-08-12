@@ -19,8 +19,21 @@ async function deleteById(id) {
     await axios.delete(`${baseUrl}/advertisements/${id}`);
 }
 
+async function post(title, description, url, price, category, userId, city) {
+    let advertisement;
+    const response = await axios.post(
+        `${baseUrl}/advertisements`,
+        JSON.stringify({ title: title, description: description, url: url, price: price, category: category, user: userId, city: city }),
+        {
+            headers: { "Content-Type": "application/json" }
+        }
+    ).then(response => advertisement = response.data);
+    return advertisement;
+}
+
 export default {
     getAll,
     getById,
-    deleteById
+    deleteById,
+    post
 }

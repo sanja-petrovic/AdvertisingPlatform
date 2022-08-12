@@ -112,6 +112,7 @@ input {
   border: 1px solid #528dff;
   background-color: white;
   color: #528dff;
+  cursor: pointer;
 }
 
 .delete-button {
@@ -119,6 +120,7 @@ input {
   background-color: white;
   color: #f33675;
   box-shadow: 0 3px 10px rgba(255, 99, 141, 0.6);
+  cursor: pointer;
 }
 
 .secondary-button:hover {
@@ -170,7 +172,6 @@ input::file-selector-button {
   border: 0 solid;
   height: 100%;
   border-radius: 2rem;
-  background-color: #dfeaff;
 }
 
 /*# sourceMappingURL=_base.css.map */

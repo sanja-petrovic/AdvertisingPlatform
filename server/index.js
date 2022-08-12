@@ -7,8 +7,6 @@ import User from "./model/User.js"
 import Advertisement from "./model/Advertisement.js";
 import bcrypt from "bcrypt";
 import JwtService from './JwtService.js';
-import passport from "passport";
-import LocalStrategy from "passport-local";
 import cors from "cors";
 const app = express();
 app.use(cors());
@@ -93,7 +91,7 @@ app.post('/api/advertisements',  (request, response) => {
             url: request.body.url,
             price: request.body.price,
             category: request.body.category,
-            user: request.body.user,
+            user: mongoose.Types.ObjectId(request.body.user),
             city: request.body.city,
             date: new Date()
         });

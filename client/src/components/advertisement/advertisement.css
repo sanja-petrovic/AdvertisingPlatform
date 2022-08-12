@@ -204,5 +204,20 @@ input {
   font-weight: 400;
   outline-style: none;
 }
+.credentials-form div {
+  width: 100%;
+}
+.credentials-form .currency-box {
+  width: 2.5rem;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  text-align: center;
+}
+.credentials-form .money-box {
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  width: calc(100% - 2.5rem);
+}
 
 /*# sourceMappingURL=advertisement.css.map */

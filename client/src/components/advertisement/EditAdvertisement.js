@@ -16,13 +16,13 @@ class NewAdvertisement extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: "",
-            description: "",
+            title: props.title,
+            description: props.description,
             url: "",
-            price: null,
-            category: "",
-            user: getIdFromToken(localStorage.getItem("token")),
-            city: "",
+            price: props.price,
+            category: props.category,
+            user: props.user,
+            city: props.city,
             error: null
         }
         this.handleInputChange = this.handleInputChange.bind(this);

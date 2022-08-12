@@ -132,6 +132,7 @@ input {
   border: 1px solid $link-color;
   background-color: white;
   color: $link-color;
+  cursor: pointer;
 }
 
 .delete-button {
@@ -140,6 +141,7 @@ input {
   background-color: white;
   color: $delete-color;
   box-shadow: 0 3px 10px rgba(255, 99, 141, 0.6);
+  cursor: pointer;
 }
 
 .secondary-button:hover {
@@ -193,6 +195,5 @@ input::file-selector-button {
   border: 0 solid;
   height: 100%;
   border-radius: 2rem;
-  background-color: $border-color;
 }
 
