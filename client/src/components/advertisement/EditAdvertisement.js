@@ -23,6 +23,7 @@ class EditAdvertisement extends React.Component {
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
     }
 
     handleInputChange(event) {
@@ -34,25 +35,22 @@ class EditAdvertisement extends React.Component {
         this.setState({
             [name]: value
         });
-        console.log(this.state);
     }
 
     async handleSubmit(event) {
         event.preventDefault();
         try {
             let advertisement = await AdvertisementService.editById(this.state.id, this.state.title, this.state.description, this.state.url, this.state.price, this.state.category, this.state.city);
-            console.log(advertisement);
-            window.location.reload();
+            window.location.href = `/advertisements/${this.state.id}`;
 
         } catch (error) {
             this.setState({error});
-            console.log(error.request.statusText);
         }
     }
 
     handleCancel(event) {
         event.preventDefault();
-        window.location.reload();
+        window.location.href = `/advertisements/${this.state.id}`;
     }
 
 

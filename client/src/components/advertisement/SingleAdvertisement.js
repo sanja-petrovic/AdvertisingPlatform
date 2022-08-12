@@ -17,7 +17,7 @@ function SingleAdvertisement(props) {
     const [ad, setAd] = useState(null);
     const [user, setUser] = useState(null);
     const [byUser, setByUser] = useState(false);
-    const [isEditable, setIsEditable] = useState(props.editable);
+    const [isEditable, setIsEditable] = useState(props.editable || false);
     let formattedDate;
 
     useEffect(() => {
@@ -60,6 +60,7 @@ function SingleAdvertisement(props) {
         e.preventDefault();
         console.log('Editing...');
         setIsEditable(true);
+        window.history.pushState("", "", `/advertisements/${ad._id}/edit`);
     }
 
     return (

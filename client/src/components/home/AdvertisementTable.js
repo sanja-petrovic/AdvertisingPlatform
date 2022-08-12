@@ -15,9 +15,7 @@ function Row(props) {
         AdvertisementService.deleteById(id);
         window.location.href = "/";
     }
-    function handleEdit(e) {
-        e.preventDefault();
-    }
+
     return <tr>
         <td></td>
         <td><b>{props.row.title}</b></td>
