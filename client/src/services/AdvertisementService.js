@@ -31,9 +31,22 @@ async function post(title, description, url, price, category, userId, city) {
     return advertisement;
 }
 
+async function editById(id, title, description, url, price, category, city) {
+    let advertisement;
+    const response = await axios.put(
+        `${baseUrl}/advertisements/${id}`,
+        JSON.stringify({ title: title, description: description, url: url, price: price, category: category, city: city }),
+        {
+            headers: { "Content-Type": "application/json" }
+        }
+    ).then(response => advertisement = response.data);
+    return advertisement;
+}
+
 export default {
     getAll,
     getById,
     deleteById,
-    post
+    post,
+    editById
 }

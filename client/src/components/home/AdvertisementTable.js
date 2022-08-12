@@ -28,10 +28,14 @@ function Row(props) {
         <td><Link to={`/advertisements/${props.row._id}`}>
             <button className="primary-button"> Check out</button>
         </Link>
-            {props.byUser && <div className="buttons">
+            {
+                props.byUser && <div className="buttons">
+                    <Link to={`/advertisements/${props.row._id}/edit`}>
+                        <button className="secondary-button">Edit</button>
+                    </Link>
                 <button className="delete-button" onClick={(e) => {handleDelete(props.row._id, e)}}>Delete</button>
-                <button className="secondary-button">Edit</button>
-            </div>}
+            </div>
+            }
         </td>
     </tr>;
 }

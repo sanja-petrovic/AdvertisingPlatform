@@ -1,28 +1,24 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import '../home/home.css'
 import '../common/_base.css'
 import './advertisement.css'
-import NavigationBar from "../common/NavigationBar";
 import corgi from "../../resources/corgi.jpg"
-import {Link, useParams} from "react-router-dom";
 import AdvertisementService from "../../services/AdvertisementService";
 import {formatDate} from "../../util/formatDate";
-import UserService from "../../services/UserService";
-import LoadingSpinner from "../common/LoadingSpinner";
-import {getIdFromToken} from "../../util/getUsernameFromToken";
-import {setAuthToken} from "../../util/setAuthToken";
 
-class NewAdvertisement extends React.Component {
+class EditAdvertisement extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: props.title,
-            description: props.description,
+            id: props.advertisement._id,
+            title: props.advertisement.title,
+            description: props.advertisement.description,
             url: "",
-            price: props.price,
-            category: props.category,
-            user: props.user,
-            city: props.city,
+            date: formatDate(props.advertisement.date),
+            price: props.advertisement.price,
+            category: props.advertisement.category,
+            user: props.advertisement.user,
+            city: props.advertisement.city,
             error: null
         }
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -44,29 +40,32 @@ class NewAdvertisement extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         try {
-            let advertisement = await AdvertisementService.post(this.state.title, this.state.description, this.state.url, this.state.price, this.state.category, this.state.user, this.state.city);
-            window.location.href = "/";
+            let advertisement = await AdvertisementService.editById(this.state.id, this.state.title, this.state.description, this.state.url, this.state.price, this.state.category, this.state.city);
+            console.log(advertisement);
+            window.location.reload();
+
         } catch (error) {
-            this.setState({ error });
+            this.setState({error});
             console.log(error.request.statusText);
         }
     }
 
+    handleCancel(event) {
+        event.preventDefault();
+        window.location.reload();
+    }
+
+
     render() {
         return (
-            <div>
-                <div className="container-vertical">
-                    <p>New advertisement</p>
-                    <form className="credentials-form" onSubmit={this.handleSubmit}>
-                        <label>Title</label>
-                        <input className="text-box" type="text" name="title" onChange={this.handleInputChange} value={this.state.title}/>
-                        <label>Price</label>
-                        <div>
-                            <input type="text" placeholder="€" disabled className="currency-box text-box"/>
-                            <input className="money-box text-box" type="number" name="price" onChange={this.handleInputChange} value={this.state.price}/>
-                        </div>
-                        <label>Category</label>
-                        <select className="text-box" name="category" onChange={this.handleInputChange} value={this.state.category}>
+            <div className="ad-container editable">
+                <div className="image-container">
+                    <img src={corgi}/>
+                </div>
+                <div className="ad-info">
+                    <p className="hashtag">#
+                        <select className="text-box" name="category" onChange={this.handleInputChange}
+                                value={this.state.category}>
                             <option selected hidden>Category</option>
                             <option>Clothing</option>
                             <option>Tools</option>
@@ -78,21 +77,30 @@ class NewAdvertisement extends React.Component {
                             <option>Books</option>
                             <option>Technology</option>
                         </select>
-                        <label>City</label>
-                        <input className="text-box" type="text" name="city" onChange={this.handleInputChange} value={this.state.city}/>
-
-                        <label>Description</label>
-                        <textarea className="text-box" name="description" onChange={this.handleInputChange} value={this.state.description}/>
-
-                        <label htmlFor="formFile" className="form-label">Image</label>
-                        <input onChange={this.handleInputChange} className="text-box" type="file" accept="image/png, image/jpeg"/>
-                        <input type="submit" className="primary-button" value="Post"/>
-                    </form>
-                    {this.state.error && <p>{this.state.error.request.statusText}</p>}
+                    </p>
+                    <p>
+                        <input className="text-box" type="text" name="title" onChange={this.handleInputChange}
+                               value={this.state.title}/>
+                    </p>
+                    <p className="small-text">{this.state.date}</p>
+                    <p className="small-text">
+                        <input className="text-box" type="text" name="city" onChange={this.handleInputChange}
+                               value={this.state.city}/>
+                    </p>
+                    <p className="small-text">
+                        <textarea className="text-box" name="description" onChange={this.handleInputChange}
+                                  value={this.state.description}/>
+                    </p>
+                    <p> € <input type="text" className="text-box" name="price" value={this.state.price}
+                                 onChange={this.handleInputChange}/></p>
+                    <div className="buttons">
+                        <button className="primary-button" onClick={this.handleSubmit}>Confirm</button>
+                        <button className="delete-button" onClick={this.handleCancel}>Cancel</button>
+                    </div>
                 </div>
             </div>
         );
     }
 }
 
-export default NewAdvertisement;
+export default EditAdvertisement;

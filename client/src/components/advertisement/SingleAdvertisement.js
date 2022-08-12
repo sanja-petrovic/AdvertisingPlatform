@@ -10,12 +10,14 @@ import {formatDate} from "../../util/formatDate";
 import UserService from "../../services/UserService";
 import LoadingSpinner from "../common/LoadingSpinner";
 import {getIdFromToken} from "../../util/getUsernameFromToken";
+import EditAdvertisement from "./EditAdvertisement";
 
-function SingleAdvertisement() {
+function SingleAdvertisement(props) {
     let {id} = useParams();
     const [ad, setAd] = useState(null);
     const [user, setUser] = useState(null);
     const [byUser, setByUser] = useState(false);
+    const [isEditable, setIsEditable] = useState(props.editable);
     let formattedDate;
 
     useEffect(() => {
@@ -54,11 +56,20 @@ function SingleAdvertisement() {
         window.location.href = "/";
     }
 
+    async function handleEdit(e) {
+        e.preventDefault();
+        console.log('Editing...');
+        setIsEditable(true);
+    }
+
     return (
         <div className="">
             <div className="container-vertical">
                 {user === null || ad === null ? <LoadingSpinner/> :
-                    <div className="ad-container">
+                    ( isEditable ? (
+                        <EditAdvertisement advertisement={ad}/>
+                    ) : (
+                        <div className="ad-container">
                         <div className="image-container">
                             <img src={corgi}/>
                         </div>
@@ -67,12 +78,13 @@ function SingleAdvertisement() {
                             <p> {ad.title} </p>
                             <p className="small-text"> {formatDate(ad.date)}, {ad.city} </p>
                             <p className="description"> {ad.description} </p>
+                            <p> €{ad.price} </p>
                             <p className="medium-text">Contact</p>
                             <p className="description"> {user.username}, {user.phone} </p>
-                            { byUser && <div className="buttons"><button className="delete-button" onClick={handleDelete}>Delete</button><button className="secondary-button">Edit</button></div> }
+                            { byUser && <div className="buttons"><button className="secondary-button" onClick={handleEdit}>Edit</button><button className="delete-button" onClick={handleDelete}>Delete</button></div> }
                         </div>
-
                     </div>
+                    ))
                 }
             </div>
         </div>

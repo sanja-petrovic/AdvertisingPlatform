@@ -128,3 +128,15 @@ app.post('/api/login', async (request, response) => {
 app.delete('/api/advertisements/:id', async(request, response) => {
     await Advertisement.findByIdAndUpdate(request.params.id, { deleted: new Date() });
 })
+
+app.put('/api/advertisements/:id', async (request, response) => {
+    const advertisement = await Advertisement.findByIdAndUpdate(request.params.id, {
+        title: request.body.title,
+        description: request.body.description,
+        url: request.body.url,
+        price: request.body.price,
+        category: request.body.category,
+        city: request.body.city
+    }, { new: true });
+    response.json(advertisement);
+})

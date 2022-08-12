@@ -74,3 +74,32 @@
     width: calc(100% - 2.5rem);
   }
 }
+
+.editable {
+  .ad-info {
+    .hashtag {
+      select {
+        margin-left: 0.5rem;
+      }
+    }
+    .small-text {
+      textarea {
+        width: 200%;
+        height: 7rem;
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+::-webkit-scrollbar-button {
+  background: $border-color;
+}
+::-webkit-scrollbar-track-piece {
+  background: $link-color;
+}
+::-webkit-scrollbar-thumb {
+  background: $link-color;
+}
