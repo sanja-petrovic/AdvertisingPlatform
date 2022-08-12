@@ -7,8 +7,6 @@ import User from "./model/User.js"
 import Advertisement from "./model/Advertisement.js";
 import bcrypt from "bcrypt";
 import JwtService from './JwtService.js';
-import passport from "passport";
-import LocalStrategy from "passport-local";
 import cors from "cors";
 const app = express();
 app.use(cors());
@@ -93,7 +91,7 @@ app.post('/api/advertisements',  (request, response) => {
             url: request.body.url,
             price: request.body.price,
             category: request.body.category,
-            user: request.body.user,
+            user: mongoose.Types.ObjectId(request.body.user),
             city: request.body.city,
             date: new Date()
         });
@@ -129,4 +127,16 @@ app.post('/api/login', async (request, response) => {
 
 app.delete('/api/advertisements/:id', async(request, response) => {
     await Advertisement.findByIdAndUpdate(request.params.id, { deleted: new Date() });
+})
+
+app.put('/api/advertisements/:id', async (request, response) => {
+    const advertisement = await Advertisement.findByIdAndUpdate(request.params.id, {
+        title: request.body.title,
+        description: request.body.description,
+        url: request.body.url,
+        price: request.body.price,
+        category: request.body.category,
+        city: request.body.city
+    }, { new: true });
+    response.json(advertisement);
 })

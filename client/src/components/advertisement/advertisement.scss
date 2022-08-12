@@ -7,16 +7,16 @@
   border: 2px solid $border-color;
   border-radius: 2rem;
   height: auto;
-  max-width: 70vw;
+  width: 70vw;
   box-shadow: 0 3px 5rem rgba(99, 219, 255, 0.1);
   overflow: hidden;
+  justify-content: flex-start;
 }
 .image-container {
   img {
     border: 0 solid $border-color;
     border-bottom-left-radius: 2rem;
     border-top-left-radius: 2rem;
-    max-width: 50vw;
     max-height: 50vh;
   }
 }
@@ -42,4 +42,64 @@
   .buttons {
     display: flex;
   }
+}
+
+.buttons {
+  display: flex;
+  button {
+    margin-right: 1rem;
+  }
+}
+
+.credentials-form {
+  select, textarea {
+    margin-bottom: 1rem;
+    font-weight: 400;
+    outline-style: none;
+  }
+  div {
+    width: 100%;
+  }
+  .currency-box {
+    width: 2.5rem;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    text-align: center;
+  }
+
+  .money-box {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: calc(100% - 2.5rem);
+  }
+}
+
+.editable {
+  .ad-info {
+    .hashtag {
+      select {
+        margin-left: 0.5rem;
+      }
+    }
+    .small-text {
+      textarea {
+        width: 200%;
+        height: 7rem;
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+::-webkit-scrollbar-button {
+  background: $border-color;
+}
+::-webkit-scrollbar-track-piece {
+  background: $link-color;
+}
+::-webkit-scrollbar-thumb {
+  background: $link-color;
 }

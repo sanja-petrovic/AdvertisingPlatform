@@ -5,7 +5,7 @@ import AdvertisementService from "../../services/AdvertisementService";
 import {formatDate} from "../../util/formatDate";
 import {getUsernameFromToken} from "../../util/getUsernameFromToken";
 import {getIdFromToken} from "../../util/getUsernameFromToken";
-import {Link} from "react-router-dom";
+import {Link, Navigate } from "react-router-dom";
 import * as PropTypes from "prop-types";
 
 function Row(props) {
@@ -15,20 +15,25 @@ function Row(props) {
         AdvertisementService.deleteById(id);
         window.location.href = "/";
     }
+
     return <tr>
         <td></td>
-        <td>{props.row.title}</td>
-        <td>{props.row.price}</td>
+        <td><b>{props.row.title}</b></td>
+        <td>€{props.row.price}</td>
         <td>{props.row.city}</td>
         <td>{props.row.category}</td>
         <td>{props.formattedDate} </td>
         <td><Link to={`/advertisements/${props.row._id}`}>
-            <button className="button primary-button"> Check out</button>
+            <button className="primary-button"> Check out</button>
         </Link>
-            {props.byUser && <div>
-                <button className="button primary-button" onClick={(e) => {handleDelete(props.row._id, e)}}>Delete</button>
-                <button className="button primary-button">Edit</button>
-            </div>}
+            {
+                props.byUser && <div className="buttons">
+                    <Link to={`/advertisements/${props.row._id}/edit`}>
+                        <button className="secondary-button">Edit</button>
+                    </Link>
+                <button className="delete-button" onClick={(e) => {handleDelete(props.row._id, e)}}>Delete</button>
+            </div>
+            }
         </td>
     </tr>;
 }

@@ -4,6 +4,7 @@ import './credentials.css'
 import {Link, Navigate} from "react-router-dom";
 import UserService from "../../services/UserService";
 import {setAuthToken} from "../../util/setAuthToken";
+import NavigationBar from "../common/NavigationBar";
 
 class SignUp extends React.Component {
     constructor(props) {
@@ -60,25 +61,28 @@ class SignUp extends React.Component {
 
     render() {
         return (
-            <div className="container-vertical">
-                <p>Welcome!</p>
-                {this.state.user && (
-                    <Navigate to="/" replace={true} />
-                )}
-                <form className="credentials-form" onSubmit={this.handleSubmit}>
-                    <label>Username</label>
-                    <input className="text-box" name="username" type="text" onChange={this.handleInputChange} value={this.state.username}/>
-                    <label>Phone number</label>
-                    <input className="text-box" type="tel" name="phone" pattern="^\+?(?:[0-9] ?){6,14}[0-9]$" onChange={this.handleInputChange} value={this.state.phone}/>
-                    <label>Password</label>
-                    <input className="text-box" name="password" type="password" onChange={this.handleInputChange} value={this.state.password}/>
-                    <label>Password, again</label>
-                    <input className="text-box" name="passwordCheck" type="password" onChange={this.handleInputChange} value={this.state.passwordCheck}/>
-                    <button type="submit" disabled={this.state.disabled} className="primary-button">Sign up</button>
-                </form>
-                {this.state.error && <p>{this.state.error.request.statusText}</p>}
-                {this.state.password !== this.state.passwordCheck && <p>Passwords must match!</p>}
-                <Link to="/login">Already a member? Log in here!</Link>
+            <div>
+                <NavigationBar/>
+                <div className="container-vertical">
+                    <p>Welcome!</p>
+                    {this.state.user && (
+                        <Navigate to="/" replace={true} />
+                    )}
+                    <form className="credentials-form" onSubmit={this.handleSubmit}>
+                        <label>Username</label>
+                        <input className="text-box" name="username" type="text" onChange={this.handleInputChange} value={this.state.username}/>
+                        <label>Phone number</label>
+                        <input className="text-box" type="tel" name="phone" pattern="^\+?(?:[0-9] ?){6,14}[0-9]$" onChange={this.handleInputChange} value={this.state.phone}/>
+                        <label>Password</label>
+                        <input className="text-box" name="password" type="password" onChange={this.handleInputChange} value={this.state.password}/>
+                        <label>Password, again</label>
+                        <input className="text-box" name="passwordCheck" type="password" onChange={this.handleInputChange} value={this.state.passwordCheck}/>
+                        <button type="submit" disabled={this.state.disabled} className="primary-button">Sign up</button>
+                    </form>
+                    {this.state.error && <p>{this.state.error.request.statusText}</p>}
+                    {this.state.password !== this.state.passwordCheck && <p>Passwords must match!</p>}
+                    <Link to="/login">Already a member? Log in here!</Link>
+                </div>
             </div>
         );
     }
