@@ -166,4 +166,11 @@ input {
   padding-bottom: 0.5rem;
 }
 
+input::file-selector-button {
+  border: 0 solid;
+  height: 100%;
+  border-radius: 2rem;
+  background-color: #dfeaff;
+}
+
 /*# sourceMappingURL=_base.css.map */

@@ -65,7 +65,7 @@ class NewAdvertisement extends React.Component {
                         <input className="text-box" type="number" name="title" onChange={this.handleInputChange} value={this.state.price}/>
                         <label>Category</label>
                         <select className="text-box" value={this.state.category}>
-                            <option disabled selected hidden>Category</option>
+                            <option selected hidden>Category</option>
                             <option>Clothing</option>
                             <option>Tools</option>
                             <option>Sports</option>
@@ -83,7 +83,7 @@ class NewAdvertisement extends React.Component {
                         <textarea className="text-box" name="description" onChange={this.handleInputChange} value={this.state.description}/>
 
                         <label htmlFor="formFile" className="form-label">Image</label>
-                        <input className="form-control text-box" type="file" accept="image/png, image/jpeg"/>
+                        <input className="text-box" type="file" accept="image/png, image/jpeg"/>
                         <input type="submit" className="primary-button" value="Post"/>
                     </form>
                     {this.state.error && <p>{this.state.error.request.statusText}</p>}

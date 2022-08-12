@@ -201,6 +201,8 @@ input {
 
 .credentials-form select, .credentials-form textarea {
   margin-bottom: 1rem;
+  font-weight: 400;
+  outline-style: none;
 }
 
 /*# sourceMappingURL=advertisement.css.map */
