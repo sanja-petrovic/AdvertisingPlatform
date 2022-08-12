@@ -11,7 +11,6 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <NavigationBar/>
                 <div className="home-content">
                     <p className="subtitle">Advertisements</p>
                     <p className="description">Check out all available advertisements below.</p>

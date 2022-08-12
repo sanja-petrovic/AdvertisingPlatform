@@ -8,6 +8,7 @@ import {
     BrowserRouter as Router,
     Routes, Route, Link, Navigate
 } from "react-router-dom"
+import NavigationBar from "../common/NavigationBar";
 
 class Login extends React.Component {
     constructor(props) {
@@ -49,20 +50,22 @@ class Login extends React.Component {
     render() {
         return (
 
-            <div className="container-vertical">
-                <p>Welcome back!</p>
-                {this.state.user && (
-                    <Navigate to="/" replace={true} />
-                )}
-                <form className="credentials-form" onSubmit={this.handleSubmit}>
-                    <label>Username</label>
-                    <input className="text-box" type="text" name="username" onChange={this.handleInputChange} value={this.state.username}/>
-                    <label>Password</label>
-                    <input className="text-box" type="password" name="password" onChange={this.handleInputChange} value={this.state.password}/>
-                    <input type="submit" className="primary-button" value="Log in"/>
-                </form>
-                {this.state.error && <p>{this.state.error.request.statusText}</p>}
-                <Link to="/signup">Not registered yet? Sign up here!</Link>
+            <div>
+                <div className="container-vertical">
+                    <p>Welcome back!</p>
+                    {this.state.user && (
+                        <Navigate to="/" replace={true} />
+                    )}
+                    <form className="credentials-form" onSubmit={this.handleSubmit}>
+                        <label>Username</label>
+                        <input className="text-box" type="text" name="username" onChange={this.handleInputChange} value={this.state.username}/>
+                        <label>Password</label>
+                        <input className="text-box" type="password" name="password" onChange={this.handleInputChange} value={this.state.password}/>
+                        <input type="submit" className="primary-button" value="Log in"/>
+                    </form>
+                    {this.state.error && <p>{this.state.error.request.statusText}</p>}
+                    <Link to="/signup">Not registered yet? Sign up here!</Link>
+                </div>
             </div>
         );
     }

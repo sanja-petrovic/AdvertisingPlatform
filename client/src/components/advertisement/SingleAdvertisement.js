@@ -10,7 +10,6 @@ import {formatDate} from "../../util/formatDate";
 import UserService from "../../services/UserService";
 import LoadingSpinner from "../common/LoadingSpinner";
 import {getIdFromToken} from "../../util/getUsernameFromToken";
-import {Navigate} from "react-router-dom";
 
 function SingleAdvertisement() {
     let {id} = useParams();
@@ -57,7 +56,6 @@ function SingleAdvertisement() {
 
     return (
         <div className="">
-            <NavigationBar/>
             <div className="container-vertical">
                 {user === null || ad === null ? <LoadingSpinner/> :
                     <div className="ad-container">
@@ -71,7 +69,7 @@ function SingleAdvertisement() {
                             <p className="description"> {ad.description} </p>
                             <p className="medium-text">Contact</p>
                             <p className="description"> {user.username}, {user.phone} </p>
-                            { byUser && <div><button className="button primary-button" onClick={handleDelete}>Delete</button><button className="button primary-button">Edit</button></div> }
+                            { byUser && <div className="buttons"><button className="delete-button" onClick={handleDelete}>Delete</button><button className="secondary-button">Edit</button></div> }
                         </div>
 
                     </div>

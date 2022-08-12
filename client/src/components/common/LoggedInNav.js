@@ -23,8 +23,8 @@ class LoggedInNav extends React.Component {
             <div>
                 <p>Welcome, <i>{this.props.username}</i>!</p>
                 <ul className="menu">
-                    <li><button className="primary-button"><Link to="/">Post an ad</Link></button></li>
-                    <li><button className="secondary-button" onClick={this.handleLogOut}><Link to="/">Log out</Link></button></li>
+                    <li><Link to="/advertisements/new"><button className="primary-button">Post an ad</button></Link></li>
+                    <li><Link to="/"><button className="secondary-button" onClick={this.handleLogOut}>Log out</button></Link></li>
                 </ul>
             </div>
         );

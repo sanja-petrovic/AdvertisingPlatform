@@ -12,7 +12,8 @@ $border-color: #dfeaff;
 $link-highlight-color: #46ddff;
 $button-color: linear-gradient(to right, $link-color 0%, $link-highlight-color 51%, $link-color  100%);
 $shadow:  0 3px 10px rgba(99, 219, 255, 0.6);
-
+$delete-color: #f33675;
+$delete-highlight-color: #ff6dc5;
 * {
   font-family: $body-font;
   font-weight: 600;
@@ -116,6 +117,7 @@ input {
   border: 0 solid;
   background-image: $button-color;
   color: white;
+  margin: 0;
   a {
     color: white;
   }
@@ -132,11 +134,27 @@ input {
   color: $link-color;
 }
 
+.delete-button {
+  @extend %button;
+  border: 1px solid $delete-color;
+  background-color: white;
+  color: $delete-color;
+  box-shadow: 0 3px 10px rgba(255, 99, 141, 0.6);
+}
+
 .secondary-button:hover {
   border: 1px solid $link-highlight-color;
   color: $link-highlight-color;
   a {
     color: $link-highlight-color;
+  }
+}
+
+.delete-button:hover {
+  border: 1px solid $delete-highlight-color;
+  color: $delete-highlight-color;
+  a {
+    color: $delete-highlight-color;
   }
 }
 
@@ -170,3 +188,4 @@ input {
     padding-bottom: 0.5rem;
   }
 }
+

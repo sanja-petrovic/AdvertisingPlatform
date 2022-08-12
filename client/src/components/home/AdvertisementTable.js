@@ -17,17 +17,17 @@ function Row(props) {
     }
     return <tr>
         <td></td>
-        <td>{props.row.title}</td>
+        <td><b>{props.row.title}</b></td>
         <td>{props.row.price}</td>
         <td>{props.row.city}</td>
         <td>{props.row.category}</td>
         <td>{props.formattedDate} </td>
         <td><Link to={`/advertisements/${props.row._id}`}>
-            <button className="button primary-button"> Check out</button>
+            <button className="primary-button"> Check out</button>
         </Link>
-            {props.byUser && <div>
-                <button className="button primary-button" onClick={(e) => {handleDelete(props.row._id, e)}}>Delete</button>
-                <button className="button primary-button">Edit</button>
+            {props.byUser && <div className="buttons">
+                <button className="delete-button" onClick={(e) => {handleDelete(props.row._id, e)}}>Delete</button>
+                <button className="secondary-button">Edit</button>
             </div>}
         </td>
     </tr>;

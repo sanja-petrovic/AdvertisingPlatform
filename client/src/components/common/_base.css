@@ -83,7 +83,7 @@ input {
   font-style: italic;
 }
 
-.secondary-button, .primary-button {
+.delete-button, .secondary-button, .primary-button {
   padding: 0.7rem 1.5rem;
   border-radius: 2rem;
   transition: 0.5s;
@@ -102,6 +102,7 @@ input {
   border: 0 solid;
   background-image: linear-gradient(to right, #528dff 0%, #46ddff 51%, #528dff 100%);
   color: white;
+  margin: 0;
 }
 .primary-button a {
   color: white;
@@ -113,12 +114,27 @@ input {
   color: #528dff;
 }
 
+.delete-button {
+  border: 1px solid #f33675;
+  background-color: white;
+  color: #f33675;
+  box-shadow: 0 3px 10px rgba(255, 99, 141, 0.6);
+}
+
 .secondary-button:hover {
   border: 1px solid #46ddff;
   color: #46ddff;
 }
 .secondary-button:hover a {
   color: #46ddff;
+}
+
+.delete-button:hover {
+  border: 1px solid #ff6dc5;
+  color: #ff6dc5;
+}
+.delete-button:hover a {
+  color: #ff6dc5;
 }
 
 .nav-bar {

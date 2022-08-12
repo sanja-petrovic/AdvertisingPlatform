@@ -7,16 +7,16 @@
   border: 2px solid $border-color;
   border-radius: 2rem;
   height: auto;
-  max-width: 70vw;
+  width: 70vw;
   box-shadow: 0 3px 5rem rgba(99, 219, 255, 0.1);
   overflow: hidden;
+  justify-content: flex-start;
 }
 .image-container {
   img {
     border: 0 solid $border-color;
     border-bottom-left-radius: 2rem;
     border-top-left-radius: 2rem;
-    max-width: 50vw;
     max-height: 50vh;
   }
 }
@@ -41,5 +41,18 @@
   }
   .buttons {
     display: flex;
+  }
+}
+
+.buttons {
+  display: flex;
+  button {
+    margin-right: 1rem;
+  }
+}
+
+.credentials-form {
+  select, textarea {
+    margin-bottom: 1rem;
   }
 }

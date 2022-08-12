@@ -125,6 +125,7 @@ input {
   align-items: center;
   border-bottom: 0 solid #dfeaff;
   position: sticky;
+  top: 0;
   background-color: white;
   padding: 0rem 2rem;
   display: flex;
@@ -155,16 +156,16 @@ input {
   border: 2px solid #dfeaff;
   border-radius: 2rem;
   height: auto;
-  max-width: 70vw;
+  width: 70vw;
   box-shadow: 0 3px 5rem rgba(99, 219, 255, 0.1);
   overflow: hidden;
+  justify-content: flex-start;
 }
 
 .image-container img {
   border: 0 solid #dfeaff;
   border-bottom-left-radius: 2rem;
   border-top-left-radius: 2rem;
-  max-width: 50vw;
   max-height: 50vh;
 }
 
@@ -189,6 +190,17 @@ input {
 }
 .ad-info .buttons {
   display: flex;
+}
+
+.buttons {
+  display: flex;
+}
+.buttons button {
+  margin-right: 1rem;
+}
+
+.credentials-form select, .credentials-form textarea {
+  margin-bottom: 1rem;
 }
 
 /*# sourceMappingURL=advertisement.css.map */
