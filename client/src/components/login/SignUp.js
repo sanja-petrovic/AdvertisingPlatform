@@ -54,6 +54,7 @@ class SignUp extends React.Component {
             this.setState({ user });
             setAuthToken(user);
             sessionStorage.setItem('token', JSON.stringify(user));
+            window.location.href = "/";
         } catch (error) {
             this.setState({ error });
         }
@@ -62,12 +63,8 @@ class SignUp extends React.Component {
     render() {
         return (
             <div>
-                <NavigationBar/>
                 <div className="container-vertical">
                     <p>Welcome!</p>
-                    {this.state.user && (
-                        <Navigate to="/" replace={true} />
-                    )}
                     <form className="credentials-form" onSubmit={this.handleSubmit}>
                         <label>Username</label>
                         <input className="text-box" name="username" type="text" onChange={this.handleInputChange} value={this.state.username}/>
