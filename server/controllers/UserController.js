@@ -25,7 +25,7 @@ async function create(request, response) {
     try {
         let user = await User.findOne({ username: request.body.username });
         if (user) {
-            response.statusMessage = "User already registered.";
+            response.statusMessage = "Username is taken. Please try another.";
             response.status(409);
             return response.send("User already registered.");
         }

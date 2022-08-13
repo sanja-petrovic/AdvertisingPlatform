@@ -1,16 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import '../home/home.css'
 import '../common/_base.css'
 import './advertisement.css'
-import NavigationBar from "../common/NavigationBar";
-import corgi from "../../resources/corgi.jpg"
-import {Link, useParams} from "react-router-dom";
 import AdvertisementService from "../../services/AdvertisementService";
-import {formatDate} from "../../util/formatDate";
-import UserService from "../../services/UserService";
-import LoadingSpinner from "../common/LoadingSpinner";
 import {getIdFromToken} from "../../util/getUsernameFromToken";
-import {setAuthToken} from "../../util/setAuthToken";
 
 class NewAdvertisement extends React.Component {
     constructor(props) {
@@ -23,10 +16,12 @@ class NewAdvertisement extends React.Component {
             category: "",
             user: getIdFromToken(localStorage.getItem("token")),
             city: "",
-            error: null
+            error: null,
+            selectedFile: null
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleFileUpload = this.handleFileUpload.bind(this);
     }
 
     handleInputChange(event) {
@@ -41,10 +36,20 @@ class NewAdvertisement extends React.Component {
         console.log(this.state);
     }
 
+    handleFileUpload(event) {
+        event.preventDefault();
+        this.setState({url: URL.createObjectURL(event.target.files[0])});
+
+    }
+
+    downloadFile(content, fileName, contentType) {
+
+    }
+
     async handleSubmit(event) {
         event.preventDefault();
         try {
-            let advertisement = await AdvertisementService.post(this.state.title, this.state.description, this.state.url, this.state.price, this.state.category, this.state.user, this.state.city);
+            await AdvertisementService.post(this.state.title, this.state.description, this.state.url, this.state.price, this.state.category, this.state.user, this.state.city);
             window.location.href = "/";
         } catch (error) {
             this.setState({ error });
@@ -85,7 +90,7 @@ class NewAdvertisement extends React.Component {
                         <textarea className="text-box" name="description" onChange={this.handleInputChange} value={this.state.description}/>
 
                         <label htmlFor="formFile" className="form-label">Image</label>
-                        <input onChange={this.handleInputChange} className="text-box" type="file" accept="image/png, image/jpeg"/>
+                        <input onChange={this.handleFileUpload} className="text-box" type="file" accept="image/*"/>
                         <input type="submit" className="primary-button" value="Post"/>
                     </form>
                     {this.state.error && <p>{this.state.error.request.statusText}</p>}
