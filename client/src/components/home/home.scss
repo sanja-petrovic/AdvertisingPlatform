@@ -59,8 +59,13 @@
 
 .dropdown-container {
   width: 80vw;
-  margin: 1rem;
+  margin: 0rem 1rem 1rem 1rem;
   label {
     margin-left: 0.5rem;
   }
+  .input-group {
+    z-index: -1 !important;
+  }
+  z-index: -1;
+
 }

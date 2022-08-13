@@ -58,23 +58,31 @@ class AdvertisementTable extends React.Component {
             titleParam: "",
             priceParamMin: "",
             priceParamMax: "",
-            mineOnlyParam: false
+            mineOnlyParam: false,
+            elementsPerPage: 20,
+            totalPages: 1,
+            pageCounter: 0
 
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
+        this.handlePageChange = this.handlePageChange.bind(this);
+        this.goToPage = this.goToPage.bind(this);
         this.filter = this.filter.bind(this);
     }
 
     async componentDidMount() {
+        const fetched = (await AdvertisementService.getAll()).sort((a, b) => {
+            let newA = convertDate(a.date).getTime();
+            let newB = convertDate(b.date).getTime();
+            return newB - newA;
+        });
+
         this.setState({
-            advertisements: (await AdvertisementService.getAll()).sort((a, b) => {
-                let newA = convertDate(a.date).getTime();
-                let newB = convertDate(b.date).getTime();
-                return newB - newA;
-            }),
-            visibleElements: this.state.advertisements
-        })
+            advertisements: fetched,
+            visibleElements: fetched,
+            totalPages: Math.ceil(fetched.length / this.state.elementsPerPage)
+        });
     }
 
     handleInputChange(event) {
@@ -98,7 +106,7 @@ class AdvertisementTable extends React.Component {
 
     renderTable() {
         if (this.state.visibleElements !== null) {
-            return this.state.visibleElements.map(function (row) {
+            return this.state.visibleElements.slice(this.state.pageCounter * this.state.elementsPerPage, this.state.elementsPerPage * (this.state.pageCounter + 1)).map(function (row) {
                     const formattedDate = formatDate(row.date);
                     const token = sessionStorage.getItem("token");
                     const byUser = token !== null ? (row.user === getIdFromToken(token)) : false;
@@ -113,23 +121,33 @@ class AdvertisementTable extends React.Component {
         const categoryParam = this.state.categoryParam === "All" ? "" : this.state.categoryParam;
         const priceParamMin = this.state.priceParamMin === "" ? "0" : this.state.priceParamMin;
         const priceParamMax = this.state.priceParamMax === "" ? Number.MAX_SAFE_INTEGER : this.state.priceParamMax;
-        console.log(this.state.advertisements[0].title.toLowerCase().includes(this.state.titleParam.toLowerCase()));
-        this.setState({
-            visibleElements: this.state.advertisements.filter(advertisement => {
-                    if(!advertisement.category.toLowerCase().includes(categoryParam.toLowerCase())) return false;
-                    if(!advertisement.title.toLowerCase().includes(this.state.titleParam.toLowerCase())) return false;
-                    return advertisement.price >= parseInt(priceParamMin) && advertisement.price <= parseInt(priceParamMax);
 
-                }
-            )
-        }, () => {
-            if (this.state.mineOnlyParam) {
-                this.setState({
-                    visibleElements: this.state.visibleElements.filter(advertisement =>
-                        advertisement.user === getIdFromToken(sessionStorage.getItem("token")))
-                })
-            }
-        })
+        let newVisibleElements = this.state.advertisements.filter(advertisement => {
+            if (!advertisement.category.toLowerCase().includes(categoryParam.toLowerCase())) return false;
+            if (!advertisement.title.toLowerCase().includes(this.state.titleParam.toLowerCase())) return false;
+            return advertisement.price >= parseInt(priceParamMin) && advertisement.price <= parseInt(priceParamMax);
+
+        });
+
+        if (this.state.mineOnlyParam) {
+            newVisibleElements = newVisibleElements.filter(advertisement =>
+                advertisement.user === getIdFromToken(sessionStorage.getItem("token")));
+        }
+
+        this.setState({
+            visibleElements: newVisibleElements,
+            totalPages: Math.ceil(newVisibleElements.length / this.state.elementsPerPage)
+        }, () => console.log(this.state.totalPages));
+    }
+
+    handlePageChange(number, event) {
+        if (this.state.pageCounter + number >= 0 && this.state.pageCounter + number < this.state.totalPages) {
+            this.setState({pageCounter: this.state.pageCounter + number});
+        }
+    }
+
+    goToPage(number, event) {
+        this.setState({pageCounter: number - 1});
     }
 
     render() {
@@ -181,6 +199,17 @@ class AdvertisementTable extends React.Component {
                 }
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+                <ul className="pagination justify-content-center align-content-center">
+                    {this.state.pageCounter > 0 ?
+                        <li className="page-item"><a className="page-link" onClick={(event) => this.handlePageChange(-1, event)} href="#">&laquo;</a></li> :
+                        <li className="page-item disabled"><a className="page-link" onClick={(event) => this.handlePageChange(-1, event)} href="#">&laquo;</a></li>}
+                    <li className="page-item disabled"><a className="page-link">
+                        {this.state.pageCounter + 1} of {this.state.totalPages}</a> </li>
+                    {this.state.pageCounter + 1 === this.state.totalPages ? <li onClick={(event) => this.handlePageChange(1, event)} className="page-item disabled" ><a className="page-link" href="#">&raquo;</a></li> :
+                        <li onClick={(event) => this.handlePageChange(1, event)} className="page-item" ><a className="page-link" href="#">&raquo;</a></li> }
+                </ul>
+            </nav>
         </div>
     }
 }

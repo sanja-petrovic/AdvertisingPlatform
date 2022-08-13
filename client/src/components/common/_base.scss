@@ -163,13 +163,14 @@ input {
 .nav-bar {
   align-items: center;
   border-bottom: 0 solid $border-color;
-  position: sticky;
   top: 0;
+  position: absolute;
   background-color: white;
-  padding: 0rem 2rem;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   max-width: 100%;
+  z-index: 2000 !important;
 
   div {
     display: flex;
