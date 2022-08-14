@@ -17,7 +17,8 @@ class Login extends React.Component {
             username: "",
             password: "",
             user: null,
-            error: null
+            error: null,
+            reachable: sessionStorage.getItem("token") === null
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,8 +41,8 @@ class Login extends React.Component {
             let user = await UserService.login(this.state.username, this.state.password);
             this.setState({ user });
             setAuthToken(user);
-            sessionStorage.setItem('token', JSON.stringify(user));
             window.location.href = "/";
+            sessionStorage.setItem('token', JSON.stringify(user));
         } catch (error) {
             this.setState({ error });
             console.log(error.request.statusText);
@@ -50,8 +51,7 @@ class Login extends React.Component {
 
     render() {
         return (
-
-            <div>
+            this.state.reachable ? <div>
                 <div className="container-vertical">
                     <p>Welcome back!</p>
                     <form className="credentials-form" onSubmit={this.handleSubmit}>
@@ -64,7 +64,7 @@ class Login extends React.Component {
                     {this.state.error && <p>{this.state.error.request.statusText}</p>}
                     <Link to="/signup">Not registered yet? Sign up here!</Link>
                 </div>
-            </div>
+            </div> : <div className="container-vertical"> <h1>Access denied.</h1></div>
         );
     }
 }

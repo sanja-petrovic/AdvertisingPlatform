@@ -5,6 +5,7 @@ import './advertisement.css'
 import corgi from "../../resources/corgi.jpg"
 import AdvertisementService from "../../services/AdvertisementService";
 import {formatDate} from "../../util/formatDate";
+import {getIdFromToken} from "../../util/getUsernameFromToken";
 
 class EditAdvertisement extends React.Component {
     constructor(props) {
@@ -55,8 +56,10 @@ class EditAdvertisement extends React.Component {
 
 
     render() {
+        const token = sessionStorage.getItem("token");
+        const editable = token !== null && getIdFromToken(token) === this.props.advertisement.user;
         return (
-            <div className="ad-container editable">
+            editable ? <div className="ad-container editable">
                 <div className="image-container">
                     <img src={corgi}/>
                 </div>
@@ -96,7 +99,7 @@ class EditAdvertisement extends React.Component {
                         <button className="delete-button" onClick={this.handleCancel}>Cancel</button>
                     </div>
                 </div>
-            </div>
+            </div> : <h1>Access denied.</h1>
         );
     }
 }

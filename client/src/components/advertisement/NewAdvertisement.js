@@ -58,8 +58,9 @@ class NewAdvertisement extends React.Component {
     }
 
     render() {
+        const creatable = sessionStorage.getItem("token") !== null;
         return (
-            <div>
+            creatable ? <div>
                 <div className="container-vertical">
                     <p>New advertisement</p>
                     <form className="credentials-form" onSubmit={this.handleSubmit}>
@@ -95,7 +96,7 @@ class NewAdvertisement extends React.Component {
                     </form>
                     {this.state.error && <p>{this.state.error.request.statusText}</p>}
                 </div>
-            </div>
+            </div> : <div className="container-vertical"> <h1>Access denied.</h1></div>
         );
     }
 }
