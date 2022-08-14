@@ -27,12 +27,6 @@ async function signUp(username, password, phone) {
 
 }
 
-async function getByUsername(username) {
-    let user = null;
-    const response = await axios.get(`${baseUrl}/usernames/${username}`).then(response => user = response.data);
-    return user;
-}
-
 async function getById(id) {
     let user = null;
     const response = await axios.get(`${baseUrl}/users/${id}`).then(response => user = response.data);
@@ -42,6 +36,5 @@ async function getById(id) {
 export default {
     login,
     signUp,
-    getByUsername,
     getById
 }

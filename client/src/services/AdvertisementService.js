@@ -16,16 +16,24 @@ async function getById(id) {
 }
 
 async function deleteById(id) {
-    await axios.delete(`${baseUrl}/advertisements/${id}`);
+    let token = sessionStorage.getItem("token");
+    token = token.replace(/^"(.*)"$/, '$1');
+    await axios.delete(`${baseUrl}/advertisements/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
 }
 
 async function post(title, description, url, price, category, userId, city) {
     let advertisement;
+    let token = sessionStorage.getItem("token");
+    token = token.replace(/^"(.*)"$/, '$1');
     const response = await axios.post(
         `${baseUrl}/advertisements`,
         JSON.stringify({ title: title, description: description, url: url, price: price, category: category, user: userId, city: city }),
         {
-            headers: { "Content-Type": "application/json" }
+            headers: { "Content-Type": "application/json", 'Authorization': `Bearer ${token}` }
         }
     ).then(response => advertisement = response.data);
     return advertisement;
@@ -33,11 +41,13 @@ async function post(title, description, url, price, category, userId, city) {
 
 async function editById(id, title, description, url, price, category, city) {
     let advertisement;
+    let token = sessionStorage.getItem("token");
+    token = token.replace(/^"(.*)"$/, '$1');
     const response = await axios.put(
         `${baseUrl}/advertisements/${id}`,
         JSON.stringify({ title: title, description: description, url: url, price: price, category: category, city: city }),
         {
-            headers: { "Content-Type": "application/json" }
+            headers: { "Content-Type": "application/json", 'Authorization': `Bearer ${token}` }
         }
     ).then(response => advertisement = response.data);
     return advertisement;

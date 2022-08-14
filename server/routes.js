@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from "express";
 import UserController from "./controllers/UserController.js";
 import AdvertisementController from "./controllers/AdvertisementController.js";
+import JwtService from "./services/JwtService.js";
 
 const router = express.Router();
 router.use((req, res, next) => {
@@ -20,12 +21,12 @@ router.get('/api/advertisements/:id', AdvertisementController.getById);
 
 router.post('/api/users', UserController.create);
 
-router.post('/api/advertisements', AdvertisementController.create);
+router.post('/api/advertisements', JwtService.authenticateToken, AdvertisementController.create);
 
 router.post('/api/login', UserController.logIn);
 
-router.delete('/api/advertisements/:id', AdvertisementController.remove);
+router.delete('/api/advertisements/:id', JwtService.authenticateToken, AdvertisementController.remove);
 
-router.put('/api/advertisements/:id', AdvertisementController.update);
+router.put('/api/advertisements/:id', JwtService.authenticateToken, AdvertisementController.update);
 
 export default router;
