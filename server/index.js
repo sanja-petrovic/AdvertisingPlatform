@@ -9,8 +9,8 @@ import seedDb from "./seed.js";
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb'}));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(cookieParser());
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}!`);
@@ -24,6 +24,6 @@ app.listen(process.env.PORT, () => {
 });
 
 //
-//seedDb().then(() => console.log('Database seeded'));
+// seedDb().then(() => console.log('Database seeded'));
 
 app.use(router);

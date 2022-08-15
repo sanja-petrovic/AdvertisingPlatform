@@ -37,20 +37,26 @@ class NewAdvertisement extends React.Component {
     }
 
     handleFileUpload(event) {
-        event.preventDefault();
-        this.setState({url: URL.createObjectURL(event.target.files[0])});
-
-    }
-
-    downloadFile(content, fileName, contentType) {
-
+        this.setState({selectedFile: event.target.files[0]});
     }
 
     async handleSubmit(event) {
         event.preventDefault();
         try {
-            await AdvertisementService.post(this.state.title, this.state.description, this.state.url, this.state.price, this.state.category, this.state.user, this.state.city);
-            window.location.href = "/";
+            /*const data = new FormData();
+            data.append('file', this.state.selectedFile);*/
+            let url = null;
+            const reader = new FileReader();
+            reader.readAsDataURL(this.state.selectedFile);
+            reader.onload = () => {
+                url = reader.result;
+                AdvertisementService.post(this.state.title, this.state.description, url, this.state.price, this.state.category, this.state.user, this.state.city);
+                window.location.href = "/";
+            }
+            reader.onerror = function (error) {
+                console.log(error);
+            }
+
         } catch (error) {
             this.setState({ error });
             console.log(error.request.statusText);

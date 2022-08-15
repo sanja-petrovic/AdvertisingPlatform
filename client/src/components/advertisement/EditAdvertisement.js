@@ -2,7 +2,7 @@ import React from 'react'
 import '../home/home.css'
 import '../common/_base.css'
 import './advertisement.css'
-import corgi from "../../resources/corgi.jpg"
+import corgi from "../../assets/corgi.jpg"
 import AdvertisementService from "../../services/AdvertisementService";
 import {formatDate} from "../../util/formatDate";
 import {getIdFromToken} from "../../util/getUsernameFromToken";

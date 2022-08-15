@@ -1,12 +1,16 @@
 import fs from 'fs';
+import path from "path"
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-export function upload(imagePath, base64Image = null) {
-    // to declare some path to store your converted image
-    const path = `${imagePath}/${Date.now()}.png`
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-    // to convert base64 format into random filename
+const imagePath = '/../../../client/src/assets';
+export function upload(base64Image = null) {
+    var jsonPath = path.join(__dirname, '..', '..', 'client', 'src', 'assets');
+    const path2 = `${jsonPath}/${Date.now()}.png`;
     const base64Data = base64Image.replace(/^data:([A-Za-z-+/]+);base64,/, '');
-    fs.writeFileSync('public/' + path, base64Data, {encoding: 'base64'});
+    fs.writeFileSync(path2, base64Data, {encoding: 'base64'});
 
-    return path;
+    return path2;
 }

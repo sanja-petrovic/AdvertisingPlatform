@@ -3,7 +3,7 @@ import '../home/home.css'
 import '../common/_base.css'
 import './advertisement.css'
 import NavigationBar from "../common/NavigationBar";
-import corgi from "../../resources/corgi.jpg"
+import corgi from "../../assets/corgi.jpg"
 import {useParams} from "react-router-dom";
 import AdvertisementService from "../../services/AdvertisementService";
 import {formatDate} from "../../util/formatDate";
