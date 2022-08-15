@@ -15,7 +15,7 @@ function getById(request, response) {
 
 async function create(request, response) {
     try {
-        const url = upload(request.body.url);
+        const url = await upload(request.body.url);
         const advertisement = new Advertisement({
             title: request.body.title,
             description: request.body.description,

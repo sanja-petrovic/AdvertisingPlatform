@@ -17,7 +17,7 @@ function Row(props) {
     }
 
     return <tr>
-        <td></td>
+        <td><img src={props.row.url}/></td>
         <td><b>{props.row.title}</b></td>
         <td>€{props.row.price}</td>
         <td>{props.row.city}</td>
