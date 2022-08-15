@@ -1,16 +1,24 @@
-import fs from 'fs';
-import path from "path"
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { v2 as cloudinary } from 'cloudinary'
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET
+});
 
-const imagePath = '/../../../client/src/assets';
-export function upload(base64Image = null) {
-    var jsonPath = path.join(__dirname, '..', '..', 'client', 'src', 'assets');
-    const path2 = `${jsonPath}/${Date.now()}.png`;
-    const base64Data = base64Image.replace(/^data:([A-Za-z-+/]+);base64,/, '');
-    fs.writeFileSync(path2, base64Data, {encoding: 'base64'});
+export async function upload(base64Image = null) {
+    const options = {
+        use_filename: true,
+        unique_filename: false,
+        overwrite: true,
+    };
 
-    return path2;
+    try {
+        const result = await cloudinary.uploader.upload(base64Image, options);
+        console.log(result);
+        return result.secure_url;
+    } catch (error) {
+        console.error(error);
+        return "";
+    }
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import '../home/home.css'
 import '../common/_base.css'
 import './advertisement.css'
-import corgi from "../../assets/corgi.jpg"
 import AdvertisementService from "../../services/AdvertisementService";
 import {formatDate} from "../../util/formatDate";
 import {getIdFromToken} from "../../util/getUsernameFromToken";
@@ -14,7 +13,7 @@ class EditAdvertisement extends React.Component {
             id: props.advertisement._id,
             title: props.advertisement.title,
             description: props.advertisement.description,
-            url: "",
+            url: props.advertisement.url,
             date: formatDate(props.advertisement.date),
             price: props.advertisement.price,
             category: props.advertisement.category,
@@ -61,7 +60,7 @@ class EditAdvertisement extends React.Component {
         return (
             editable ? <div className="ad-container editable">
                 <div className="image-container">
-                    <img src={corgi}/>
+                    <img src={this.props.advertisement.url}/>
                 </div>
                 <div className="ad-info">
                     <p className="hashtag">#
