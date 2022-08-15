@@ -22,4 +22,5 @@
 
     cd server
     npm install
+    npm install dotenv
     npm run dev
