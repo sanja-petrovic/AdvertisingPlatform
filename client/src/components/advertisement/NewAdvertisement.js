@@ -43,15 +43,13 @@ class NewAdvertisement extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         try {
-            /*const data = new FormData();
-            data.append('file', this.state.selectedFile);*/
             let url = null;
             const reader = new FileReader();
             reader.readAsDataURL(this.state.selectedFile);
-            reader.onload = () => {
+            reader.onload = async () => {
                 url = reader.result;
-                AdvertisementService.post(this.state.title, this.state.description, url, this.state.price, this.state.category, this.state.user, this.state.city);
-                window.location.href = "/";
+                await AdvertisementService.post(this.state.title, this.state.description, url, this.state.price, this.state.category, this.state.user, this.state.city).then(response =>
+                    window.location.href = "/");
             }
             reader.onerror = function (error) {
                 console.log(error);

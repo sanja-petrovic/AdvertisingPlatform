@@ -41,10 +41,11 @@ async function remove(request, response) {
 }
 
 async function update(request, response) {
+    const url = await upload(request.body.url);
     const advertisement = await Advertisement.findByIdAndUpdate(request.params.id, {
         title: request.body.title,
         description: request.body.description,
-        url: request.body.url,
+        url: url,
         price: request.body.price,
         category: request.body.category,
         city: request.body.city
