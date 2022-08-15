@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "~bootstrap/dist/css/bootstrap.min.css";
+$logo-font: 'Playfair Display', serif;
+$body-font: 'Montserrat', sans-serif;
+$body-font-color: #515398;
+$background-color: #ffffff;
+$link-color: #528dff;
+$light-color: #a5caea;
+$border-color: #dfeaff;
+$link-highlight-color: #46ddff;
+$button-color: linear-gradient(to right, $link-color 0%, $link-highlight-color 51%, $link-color  100%);
+$shadow:  0 3px 10px rgba(99, 219, 255, 0.6);
+$delete-color: #f33675;
+$delete-highlight-color: #ff6dc5;
+* {
+  font-family: $body-font;
+  font-weight: 600;
+  margin: 0;
+  font-size: 14px;
+}
+
+.title {
+  font-family: $logo-font;
+  font-weight: 900;
+  font-style: italic;
+  color: $link-color;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+%container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+
+}
+
+.container-vertical {
+  @extend %container;
+  flex-direction: column;
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  p {
+    font-size: 24px;
+    margin-bottom: 1rem;
+  }
+}
+
+.text-box {
+  padding: 0.5rem;
+  border: 1px solid $border-color;
+  border-radius: 2rem;
+}
+
+.title:hover {
+  color: $link-highlight-color;
+}
+
+body {
+  background-color: $background-color;
+  color: $body-font-color;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+a:hover {
+  color: $link-highlight-color;
+}
+
+input {
+  border: none transparent;
+  outline: none;
+}
+
+.subtitle {
+  font-weight: 400;
+  margin-left: 1vw;
+}
+
+.description {
+  font-weight: 400;
+}
+
+.title {
+  font-family: $logo-font;
+  font-weight: 900;
+  font-size: 28px;
+  font-style: italic;
+}
+
+%button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 2rem;
+  transition: 0.5s;
+  background-size: 200% auto;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(99, 219, 255, 0.6);
+}
+
+%button-hover {
+  background-position: right center;
+  text-decoration: none;
+}
+
+.primary-button {
+  @extend %button;
+  border: 0 solid;
+  display: block;
+  background-image: $button-color;
+  color: white;
+  margin: 0;
+  a {
+    color: white;
+  }
+}
+
+.primary-button:hover {
+  @extend %button-hover;
+}
+
+.secondary-button {
+  @extend %button;
+  border: 1px solid $link-color;
+  display: block;
+  background-color: white;
+  color: $link-color;
+  cursor: pointer;
+}
+
+.delete-button {
+  @extend %button;
+  border: 1px solid $delete-color;
+  display: block;
+  background-color: white;
+  color: $delete-color;
+  box-shadow: 0 3px 10px rgba(255, 99, 141, 0.6);
+  cursor: pointer;
+}
+
+.secondary-button:hover {
+  border: 1px solid $link-highlight-color;
+  color: $link-highlight-color;
+  a {
+    color: $link-highlight-color;
+  }
+}
+
+.delete-button:hover {
+  border: 1px solid $delete-highlight-color;
+  color: $delete-highlight-color;
+  a {
+    color: $delete-highlight-color;
+  }
+}
+
+.nav-bar {
+  align-items: center;
+  border-bottom: 0 solid $border-color;
+  top: 0;
+  position: absolute;
+  background-color: white;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+  z-index: 2000 !important;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1rem;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  li {
+    float: left;
+    margin-left: 1rem;
+    font-weight: 400;
+    padding-bottom: 0.5rem;
+  }
+}
+
+input::file-selector-button {
+  border: 0 solid;
+  height: 100%;
+  border-radius: 2rem;
+}
+

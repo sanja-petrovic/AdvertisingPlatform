@@ -1,0 +1,33 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "back-end",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "author": "Sanya",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cloudinary": "^1.30.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.1",
+    "multer": "^1.4.5-lts.1",
+    "passport": "^0.6.0",
+    "passport-http-bearer": "^1.0.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "nodemon": "^2.0.19"
+  }
+}

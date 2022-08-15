@@ -1,0 +1,329 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "~bootstrap/dist/css/bootstrap.min.css";
+* {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  margin: 0;
+  font-size: 14px;
+}
+
+.title {
+  font-family: "Playfair Display", serif;
+  font-weight: 900;
+  font-style: italic;
+  color: #528dff;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.ad-container, .container-vertical {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.container-vertical {
+  flex-direction: column;
+}
+.container-vertical form {
+  display: flex;
+  flex-direction: column;
+}
+.container-vertical p {
+  font-size: 24px;
+  margin-bottom: 1rem;
+}
+
+.text-box {
+  padding: 0.5rem;
+  border: 1px solid #dfeaff;
+  border-radius: 2rem;
+}
+
+.title:hover {
+  color: #46ddff;
+}
+
+body {
+  background-color: #ffffff;
+  color: #515398;
+}
+
+a {
+  color: #528dff;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+a:hover {
+  color: #46ddff;
+}
+
+input {
+  border: none transparent;
+  outline: none;
+}
+
+.subtitle {
+  font-weight: 400;
+  margin-left: 1vw;
+}
+
+.description {
+  font-weight: 400;
+}
+
+.title {
+  font-family: "Playfair Display", serif;
+  font-weight: 900;
+  font-size: 28px;
+  font-style: italic;
+}
+
+.delete-button, .secondary-button, .primary-button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 2rem;
+  transition: 0.5s;
+  background-size: 200% auto;
+  display: block;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(99, 219, 255, 0.6);
+}
+
+.primary-button:hover {
+  background-position: right center;
+  text-decoration: none;
+}
+
+.primary-button {
+  border: 0 solid;
+  background-image: linear-gradient(to right, #528dff 0%, #46ddff 51%, #528dff 100%);
+  color: white;
+  margin: 0;
+}
+.primary-button a {
+  color: white;
+}
+
+.secondary-button {
+  border: 1px solid #528dff;
+  background-color: white;
+  color: #528dff;
+  cursor: pointer;
+}
+
+.delete-button {
+  border: 1px solid #f33675;
+  background-color: white;
+  color: #f33675;
+  box-shadow: 0 3px 10px rgba(255, 99, 141, 0.6);
+  cursor: pointer;
+}
+
+.secondary-button:hover {
+  border: 1px solid #46ddff;
+  color: #46ddff;
+}
+.secondary-button:hover a {
+  color: #46ddff;
+}
+
+.delete-button:hover {
+  border: 1px solid #ff6dc5;
+  color: #ff6dc5;
+}
+.delete-button:hover a {
+  color: #ff6dc5;
+}
+
+.nav-bar {
+  align-items: center;
+  border-bottom: 0 solid #dfeaff;
+  top: 0;
+  position: absolute;
+  background-color: white;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+  z-index: 2000 !important;
+}
+.nav-bar div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+}
+.nav-bar ul {
+  list-style-type: none;
+  padding: 0;
+  overflow: hidden;
+}
+.nav-bar li {
+  float: left;
+  margin-left: 1rem;
+  font-weight: 400;
+  padding-bottom: 0.5rem;
+}
+
+input::file-selector-button {
+  border: 0 solid;
+  height: 100%;
+  border-radius: 2rem;
+}
+
+.ad-container {
+  flex-direction: row;
+  background-color: white;
+  border: 2px solid #dfeaff;
+  border-radius: 2rem;
+  height: auto;
+  width: 70vw;
+  box-shadow: 0 3px 5rem rgba(99, 219, 255, 0.1);
+  overflow: hidden;
+  justify-content: flex-start;
+}
+
+.image-container {
+  position: relative;
+}
+.image-container img {
+  border: 0 solid #dfeaff;
+  border-bottom-left-radius: 2rem;
+  border-top-left-radius: 2rem;
+  max-height: 70vh;
+  max-width: 40vw;
+}
+.image-container .img-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.image-container .img-overlay:before {
+  content: " ";
+  display: block;
+  /* adjust 'height' to position overlay content vertically */
+  height: 50%;
+}
+
+.img-wrapper {
+  position: relative;
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.img-overlay:before {
+  content: " ";
+  display: block;
+  /* adjust 'height' to position overlay content vertically */
+  height: 45%;
+}
+
+.ad-info {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.ad-info .description {
+  font-size: 16px;
+}
+.ad-info .hashtag {
+  font-size: 14px;
+  color: #528dff;
+}
+.ad-info .small-text {
+  font-size: 12px;
+}
+.ad-info .medium-text {
+  font-size: 20px;
+}
+.ad-info .buttons {
+  display: flex;
+}
+
+.buttons {
+  display: flex;
+}
+.buttons button {
+  margin-right: 1rem;
+}
+
+.credentials-form select, .credentials-form textarea {
+  margin-bottom: 1rem;
+  font-weight: 400;
+  outline-style: none;
+}
+.credentials-form div {
+  width: 100%;
+}
+.credentials-form .currency-box {
+  width: 2.5rem;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  text-align: center;
+}
+.credentials-form .money-box {
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  width: calc(100% - 2.5rem);
+}
+
+.editable .ad-info .hashtag {
+  margin-top: 1rem;
+}
+.editable .ad-info .hashtag select {
+  margin-left: 0.5rem;
+}
+.editable .ad-info .small-text textarea {
+  width: 200%;
+  height: 7rem;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-button {
+  background: #dfeaff;
+}
+
+::-webkit-scrollbar-track-piece {
+  background: #528dff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #528dff;
+}
+
+.upload-button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 2rem;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: #797979;
+  background-color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgb(255, 255, 255);
+}
+
+.upload-button:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+/*# sourceMappingURL=advertisement.css.map */
