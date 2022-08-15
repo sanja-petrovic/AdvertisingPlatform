@@ -6,9 +6,9 @@
 
 ## Tech stack — *MERN*
 
-**Front-end:** React.js
-**Back-end:** Express.js
-**Database:** MongoDB Atlas
+- **Front-end:** React.js, Bootstrap, SCSS
+- **Back-end:** Express.js
+- **Database:** MongoDB Atlas
 
 ## Instructions
 
