@@ -18,7 +18,7 @@ class Login extends React.Component {
             password: "",
             user: null,
             error: null,
-            reachable: sessionStorage.getItem("token") === null
+            reachable: localStorage.getItem("token") === null
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,7 +42,7 @@ class Login extends React.Component {
             this.setState({ user });
             setAuthToken(user);
             window.location.href = "/";
-            sessionStorage.setItem('token', JSON.stringify(user));
+            localStorage.setItem('token', JSON.stringify(user));
         } catch (error) {
             this.setState({ error });
             console.log(error.request.statusText);

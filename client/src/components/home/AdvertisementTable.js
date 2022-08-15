@@ -108,7 +108,7 @@ class AdvertisementTable extends React.Component {
         if (this.state.visibleElements !== null) {
             return this.state.visibleElements.slice(this.state.pageCounter * this.state.elementsPerPage, this.state.elementsPerPage * (this.state.pageCounter + 1)).map(function (row) {
                     const formattedDate = formatDate(row.date);
-                    const token = sessionStorage.getItem("token");
+                    const token = localStorage.getItem("token");
                     const byUser = token !== null ? (row.user === getIdFromToken(token)) : false;
                     return <Row key={row._id} row={row} formattedDate={formattedDate} byUser={byUser}
                     />
@@ -131,7 +131,7 @@ class AdvertisementTable extends React.Component {
 
         if (this.state.mineOnlyParam) {
             newVisibleElements = newVisibleElements.filter(advertisement =>
-                advertisement.user === getIdFromToken(sessionStorage.getItem("token")));
+                advertisement.user === getIdFromToken(localStorage.getItem("token")));
         }
 
         this.setState({
@@ -178,7 +178,7 @@ class AdvertisementTable extends React.Component {
                            placeholder="Price (max)" value={this.state.priceParamMax}
                     />
                 </div>
-                {sessionStorage.getItem("token") !== null &&
+                {localStorage.getItem("token") !== null &&
                     <div><input onChange={this.handleCheckBox} type="checkbox" id="mine-only"/>
                         <label htmlFor="mine-only">Show mine only</label></div>}
             </div>

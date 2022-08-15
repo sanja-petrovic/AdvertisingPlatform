@@ -16,7 +16,7 @@ async function getById(id) {
 }
 
 async function deleteById(id) {
-    let token = sessionStorage.getItem("token");
+    let token = localStorage.getItem("token");
     token = token.replace(/^"(.*)"$/, '$1');
     await axios.delete(`${baseUrl}/advertisements/${id}`, {
         headers: {
@@ -27,7 +27,7 @@ async function deleteById(id) {
 
 async function post(title, description, url, price, category, userId, city) {
     let advertisement;
-    let token = sessionStorage.getItem("token");
+    let token = localStorage.getItem("token");
     token = token.replace(/^"(.*)"$/, '$1');
     const response = await axios.post(
         `${baseUrl}/advertisements`,
@@ -41,7 +41,7 @@ async function post(title, description, url, price, category, userId, city) {
 
 async function editById(id, title, description, url, price, category, city) {
     let advertisement;
-    let token = sessionStorage.getItem("token");
+    let token = localStorage.getItem("token");
     token = token.replace(/^"(.*)"$/, '$1');
     const response = await axios.put(
         `${baseUrl}/advertisements/${id}`,

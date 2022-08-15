@@ -69,14 +69,9 @@ const seedUsers = [
     }
 ]
 
-const seedAdvertisements = [
-
-]
-
 const seedDb = async () => {
     await User.deleteMany({});
     await User.insertMany(seedUsers);
-    await Advertisement.deleteMany({});
 }
 
 export default seedDb;

@@ -62,7 +62,7 @@ class NewAdvertisement extends React.Component {
     }
 
     render() {
-        const creatable = sessionStorage.getItem("token") !== null;
+        const creatable = localStorage.getItem("token") !== null;
         return (
             creatable ? <div>
                 <div className="container-vertical">

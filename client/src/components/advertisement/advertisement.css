@@ -195,6 +195,7 @@ input::file-selector-button {
   border-bottom-left-radius: 2rem;
   border-top-left-radius: 2rem;
   max-height: 70vh;
+  max-width: 40vw;
 }
 .image-container .img-overlay {
   position: absolute;

@@ -82,7 +82,7 @@ class EditAdvertisement extends React.Component {
     }
 
     render() {
-        const token = sessionStorage.getItem("token");
+        const token = localStorage.getItem("token");
         const editable = token !== null && getIdFromToken(token) === this.props.advertisement.user;
         return (
             editable ? <div className="ad-container editable">

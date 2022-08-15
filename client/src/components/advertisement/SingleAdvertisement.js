@@ -27,7 +27,7 @@ function SingleAdvertisement(props) {
                 const user = await UserService.getById(result.user);
                 if (user !== null) {
                     setUser(user);
-                    const token = sessionStorage.getItem("token");
+                    const token = localStorage.getItem("token");
                     setByUser(token !== null && getIdFromToken(token) === user._id);
                 }
             }
