@@ -142,13 +142,14 @@ input {
 .nav-bar {
   align-items: center;
   border-bottom: 0 solid #dfeaff;
-  position: sticky;
   top: 0;
+  position: absolute;
   background-color: white;
-  padding: 0rem 2rem;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   max-width: 100%;
+  z-index: 2000 !important;
 }
 .nav-bar div {
   display: flex;
@@ -186,11 +187,49 @@ input::file-selector-button {
   justify-content: flex-start;
 }
 
+.image-container {
+  position: relative;
+}
 .image-container img {
   border: 0 solid #dfeaff;
   border-bottom-left-radius: 2rem;
   border-top-left-radius: 2rem;
-  max-height: 50vh;
+  max-height: 70vh;
+  max-width: 40vw;
+}
+.image-container .img-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.image-container .img-overlay:before {
+  content: " ";
+  display: block;
+  /* adjust 'height' to position overlay content vertically */
+  height: 50%;
+}
+
+.img-wrapper {
+  position: relative;
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.img-overlay:before {
+  content: " ";
+  display: block;
+  /* adjust 'height' to position overlay content vertically */
+  height: 45%;
 }
 
 .ad-info {
@@ -244,6 +283,9 @@ input::file-selector-button {
   width: calc(100% - 2.5rem);
 }
 
+.editable .ad-info .hashtag {
+  margin-top: 1rem;
+}
 .editable .ad-info .hashtag select {
   margin-left: 0.5rem;
 }
@@ -266,6 +308,22 @@ input::file-selector-button {
 
 ::-webkit-scrollbar-thumb {
   background: #528dff;
+}
+
+.upload-button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 2rem;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: #797979;
+  background-color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgb(255, 255, 255);
+}
+
+.upload-button:hover {
+  background-color: rgb(255, 255, 255);
 }
 
 /*# sourceMappingURL=advertisement.css.map */

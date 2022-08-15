@@ -15,7 +15,7 @@ class LoggedInNav extends React.Component {
 
     handleLogOut(event) {
         setAuthToken(null);
-        sessionStorage.clear();
+        localStorage.clear();
         window.location.href = '/';
     }
     render() {

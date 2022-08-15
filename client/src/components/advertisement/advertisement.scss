@@ -13,12 +13,50 @@
   justify-content: flex-start;
 }
 .image-container {
+  position: relative;
   img {
     border: 0 solid $border-color;
     border-bottom-left-radius: 2rem;
     border-top-left-radius: 2rem;
-    max-height: 50vh;
+    max-height: 70vh;
+    max-width: 40vw;
   }
+
+  .img-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
+  .img-overlay:before {
+    content: ' ';
+    display: block;
+    /* adjust 'height' to position overlay content vertically */
+    height: 50%;
+  }
+}
+
+.img-wrapper {
+  position: relative;
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.img-overlay:before {
+  content: ' ';
+  display: block;
+  /* adjust 'height' to position overlay content vertically */
+  height: 45%;
 }
 
 .ad-info {
@@ -78,6 +116,7 @@
 .editable {
   .ad-info {
     .hashtag {
+      margin-top: 1rem;
       select {
         margin-left: 0.5rem;
       }
@@ -102,4 +141,20 @@
 }
 ::-webkit-scrollbar-thumb {
   background: $link-color;
+}
+
+.upload-button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 2rem;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: #797979;
+  background-color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 1);
+}
+
+.upload-button:hover {
+  background-color: rgba(255, 255, 255, 1);
 }

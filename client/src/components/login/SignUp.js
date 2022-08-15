@@ -17,7 +17,7 @@ class SignUp extends React.Component {
             user: null,
             error: null,
             disabled: 'disabled',
-            reachable: sessionStorage.getItem("token") === null
+            reachable: localStorage.getItem("token") === null
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -55,7 +55,7 @@ class SignUp extends React.Component {
             this.setState({ user });
             setAuthToken(user);
             window.location.href = "/";
-            sessionStorage.setItem('token', JSON.stringify(user));
+            localStorage.setItem('token', JSON.stringify(user));
         } catch (error) {
             this.setState({ error });
         }

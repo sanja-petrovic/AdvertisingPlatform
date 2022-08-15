@@ -2,7 +2,6 @@ import React from 'react'
 import '../home/home.css'
 import '../common/_base.css'
 import './advertisement.css'
-import corgi from "../../resources/corgi.jpg"
 import AdvertisementService from "../../services/AdvertisementService";
 import {formatDate} from "../../util/formatDate";
 import {getIdFromToken} from "../../util/getUsernameFromToken";
@@ -14,17 +13,19 @@ class EditAdvertisement extends React.Component {
             id: props.advertisement._id,
             title: props.advertisement.title,
             description: props.advertisement.description,
-            url: "",
+            url: props.advertisement.url,
             date: formatDate(props.advertisement.date),
             price: props.advertisement.price,
             category: props.advertisement.category,
             user: props.advertisement.user,
             city: props.advertisement.city,
-            error: null
+            error: null,
+            selectedFile: null
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
+        this.handleFileUpload = this.handleFileUpload.bind(this);
     }
 
     handleInputChange(event) {
@@ -39,13 +40,35 @@ class EditAdvertisement extends React.Component {
     }
 
     async handleSubmit(event) {
-        event.preventDefault();
+        /*event.preventDefault();
         try {
             let advertisement = await AdvertisementService.editById(this.state.id, this.state.title, this.state.description, this.state.url, this.state.price, this.state.category, this.state.city);
             window.location.href = `/advertisements/${this.state.id}`;
 
         } catch (error) {
             this.setState({error});
+        }*/
+        event.preventDefault();
+        try {
+            if(this.state.selectedFile !== null) {
+                let url = null;
+                const reader = new FileReader();
+                reader.readAsDataURL(this.state.selectedFile);
+                reader.onload = async () => {
+                    url = reader.result;
+                    await AdvertisementService.editById(this.state.id, this.state.title, this.state.description, url, this.state.price, this.state.category, this.state.city).then(response => window.location.href = `/advertisements/${this.state.id}`);
+
+                }
+                reader.onerror = function (error) {
+                    console.log(error);
+                }
+            } else {
+                await AdvertisementService.editById(this.state.id, this.state.title, this.state.description, this.state.url, this.state.price, this.state.category, this.state.city).then(response => window.location.href = `/advertisements/${this.state.id}`);
+            }
+
+        } catch (error) {
+            this.setState({ error });
+            console.log(error.request.statusText);
         }
     }
 
@@ -54,14 +77,17 @@ class EditAdvertisement extends React.Component {
         window.location.href = `/advertisements/${this.state.id}`;
     }
 
+    handleFileUpload(event) {
+        this.setState({selectedFile: event.target.files[0]});
+    }
 
     render() {
-        const token = sessionStorage.getItem("token");
+        const token = localStorage.getItem("token");
         const editable = token !== null && getIdFromToken(token) === this.props.advertisement.user;
         return (
             editable ? <div className="ad-container editable">
                 <div className="image-container">
-                    <img src={corgi}/>
+                    <img src={this.props.advertisement.url}/>
                 </div>
                 <div className="ad-info">
                     <p className="hashtag">#
@@ -94,6 +120,9 @@ class EditAdvertisement extends React.Component {
                     </p>
                     <p> € <input type="text" className="text-box" name="price" value={this.state.price}
                                  onChange={this.handleInputChange}/></p>
+                    <p className="small-text">
+                        <input onChange={this.handleFileUpload} className="text-box" type="file" accept="image/*"/>
+                    </p>
                     <div className="buttons">
                         <button className="primary-button" onClick={this.handleSubmit}>Confirm</button>
                         <button className="delete-button" onClick={this.handleCancel}>Cancel</button>

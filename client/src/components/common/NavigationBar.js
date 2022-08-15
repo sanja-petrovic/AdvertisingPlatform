@@ -12,7 +12,7 @@ import {getUsernameFromToken} from "../../util/getUsernameFromToken";
 class NavigationBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isLoggedIn: sessionStorage.getItem("token") !== null};
+        this.state = {isLoggedIn: localStorage.getItem("token") !== null};
     }
 
     render() {

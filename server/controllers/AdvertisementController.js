@@ -1,6 +1,6 @@
 import Advertisement from "../model/Advertisement.js";
+import { upload } from "../services/ImageService.js";
 import mongoose from "mongoose";
-
 function getAll(request, response) {
     Advertisement.find().then(advertisements => {
         response.json(advertisements.filter(advertisement => advertisement.deleted === undefined));
@@ -15,10 +15,11 @@ function getById(request, response) {
 
 async function create(request, response) {
     try {
+        const url = await upload(request.body.url);
         const advertisement = new Advertisement({
             title: request.body.title,
             description: request.body.description,
-            url: request.body.url,
+            url: url,
             price: request.body.price,
             category: request.body.category,
             user: mongoose.Types.ObjectId(request.body.user),
@@ -40,10 +41,11 @@ async function remove(request, response) {
 }
 
 async function update(request, response) {
+    const url = await upload(request.body.url);
     const advertisement = await Advertisement.findByIdAndUpdate(request.params.id, {
         title: request.body.title,
         description: request.body.description,
-        url: request.body.url,
+        url: url,
         price: request.body.price,
         category: request.body.category,
         city: request.body.city

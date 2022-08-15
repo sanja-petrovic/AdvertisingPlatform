@@ -102,7 +102,6 @@ input {
   border-radius: 2rem;
   transition: 0.5s;
   background-size: 200% auto;
-  display: block;
   cursor: pointer;
   box-shadow: 0 3px 10px rgba(99, 219, 255, 0.6);
 }
@@ -115,6 +114,7 @@ input {
 .primary-button {
   @extend %button;
   border: 0 solid;
+  display: block;
   background-image: $button-color;
   color: white;
   margin: 0;
@@ -130,6 +130,7 @@ input {
 .secondary-button {
   @extend %button;
   border: 1px solid $link-color;
+  display: block;
   background-color: white;
   color: $link-color;
   cursor: pointer;
@@ -138,6 +139,7 @@ input {
 .delete-button {
   @extend %button;
   border: 1px solid $delete-color;
+  display: block;
   background-color: white;
   color: $delete-color;
   box-shadow: 0 3px 10px rgba(255, 99, 141, 0.6);

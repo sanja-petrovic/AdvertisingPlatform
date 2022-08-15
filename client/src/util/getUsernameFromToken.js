@@ -1,5 +1,5 @@
 const getUsernameFromToken = () => {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     if (token !== null) {
         const tokenParts = token.split('.');
         const encodedPayload = tokenParts[1];
@@ -11,7 +11,7 @@ const getUsernameFromToken = () => {
     }
 }
 const getIdFromToken = () => {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     if (token !== null) {
         const tokenParts = token.split('.');
         const encodedPayload = tokenParts[1];

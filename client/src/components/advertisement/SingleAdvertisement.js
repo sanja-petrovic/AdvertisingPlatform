@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react'
 import '../home/home.css'
 import '../common/_base.css'
 import './advertisement.css'
-import NavigationBar from "../common/NavigationBar";
-import corgi from "../../resources/corgi.jpg"
 import {useParams} from "react-router-dom";
 import AdvertisementService from "../../services/AdvertisementService";
 import {formatDate} from "../../util/formatDate";
@@ -29,7 +27,7 @@ function SingleAdvertisement(props) {
                 const user = await UserService.getById(result.user);
                 if (user !== null) {
                     setUser(user);
-                    const token = sessionStorage.getItem("token");
+                    const token = localStorage.getItem("token");
                     setByUser(token !== null && getIdFromToken(token) === user._id);
                 }
             }
@@ -72,7 +70,7 @@ function SingleAdvertisement(props) {
                     ) : (
                         <div className="ad-container">
                         <div className="image-container">
-                            <img src={corgi}/>
+                            <img src={ad.url}/>
                         </div>
                         <div className="ad-info">
                             <p className="hashtag"> #{ad.category} </p>
